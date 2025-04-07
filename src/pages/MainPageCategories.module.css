@@ -1,0 +1,20 @@
+.mainpage_categories_wrapper {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 равные колонки */
+  gap: 20px;
+  max-width: var(--max-wrapper-width);
+  margin: 0 auto;
+}
+
+.mainpage_categories_wrapper a:nth-child(1),
+.mainpage_categories_wrapper a:nth-child(2) {
+  grid-column: span 2;
+}
+
+.mainpage_categories_big_image,
+.mainpage_categories_small_image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}

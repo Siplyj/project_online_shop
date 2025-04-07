@@ -1,0 +1,22 @@
+* {
+    box-sizing: border-box;
+    font: 400 16px/1.3 'Finlandica', sans-serif;
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+/*    max-width: 1440px;
+    height: 1000px;*/
+}
+
+:root {
+    --color-text-light: #ffffff;
+    --color-text-dark: #111111;
+    --color-background-light: #ffffff;
+    --color-background-dark: #2D2D2D;
+    --color-background-main: #585858;
+    --max-main-width: 90%;
+    --max-wrapper-width: 1440px;
+}
+
