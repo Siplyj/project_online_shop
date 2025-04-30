@@ -1,0 +1,91 @@
+[
+  {
+    "id": "women-01",
+    "url": "casual_cotton_t-shirt",
+    "name": "Casual cotton T-shirt",
+    "description": "Quality cotton t-shirt.",
+    "price": 19.99,
+    "sizes": ["S", "M", "L"],
+    "countryOfOrigin": "Poland",
+    "material": "Cotton",
+    "number_of_images": 4
+  },
+  {
+    "id": "women-02",
+    "url": "cotton_tweed_cardigan",
+    "name": "Cotton tweed cardigan",
+    "description": "Cotton tweed cardigan",
+    "price": 49.99,
+    "sizes": ["S", "M", "L", "XL"],
+    "countryOfOrigin": "Italy",
+    "material": "Cotton",
+    "number_of_images": 4
+  },
+  {
+    "id": "women-03",
+    "url": "water-repellent_trench_coat",
+    "name": "Water-repellent trench coat",
+    "description": "Water-repellent trench coat",
+    "price": 29.99,
+    "price_before_discount": 49.99,
+    "sizes": ["S", "M", "L", "XL"],
+    "countryOfOrigin": "Portugal",
+    "material": "Cotton",
+    "number_of_images": 4
+  },
+  {
+    "id": "women-04",
+    "url": "knitted_waistcoat",
+    "name": "Knitted waistcoat",
+    "description": "Knitted waistcoat",
+    "price": 34.99,
+    "sizes": ["S", "M", "L", "XL"],
+    "countryOfOrigin": "Poland",
+    "material": "Knitwear",
+    "number_of_images": 4
+  },
+  {
+    "id": "women-05",
+    "url": "striped_cotton_shirt",
+    "name": "Striped cotton shirt",
+    "description": "Striped cotton shirt",
+    "price": 34.99,
+    "sizes": ["S", "M", "L", "XL"],
+    "countryOfOrigin": "Portugal",
+    "material": "Cotton",
+    "number_of_images": 4
+  },
+  {
+    "id": "women-06",
+    "url": "сheckered_shirt",
+    "name": "Checkered shirt",
+    "description": "Checkered shirt",
+    "price": 19.99,
+    "sizes": ["S", "M", "L"],
+    "countryOfOrigin": "Poland",
+    "material": "Cotton",
+    "number_of_images": 4
+  },
+  {
+    "id": "women-07",
+    "url": "high-waisted_jeans",
+    "name": "High-waisted jeans",
+    "description": "High-waisted jeans",
+    "price": 79.99,
+    "sizes": ["S", "M", "L", "XL"],
+    "countryOfOrigin": "Italy",
+    "material": "Cotton",
+    "number_of_images": 4
+  },
+  {
+    "id": "women-08",
+    "url": "white_jeans",
+    "name": "White jeans",
+    "description": "White jeans",
+    "price": 39.99,
+    "sizes": ["S", "M", "L", "XL"],
+    "countryOfOrigin": "Italy",
+    "material": "Cotton",
+    "number_of_images": 4
+  }
+]

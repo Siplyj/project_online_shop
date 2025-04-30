@@ -1,0 +1,39 @@
+.mainpage_address_wrapper {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+    margin: 0 auto 30px;
+    max-width: var(--max-wrapper-width);
+}
+
+.mainpage_address_wrapper_title {
+    font-size: 1.5rem;
+}
+
+.mainpage_address_details {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    text-align: left;
+    gap: 50px;
+}
+
+.mainpage_interior_photo {
+    max-width: 50%;
+}
+
+.mainpage_address_line {
+    margin-bottom: 30px;
+}
+
+.mainpage_address_title {
+    font-weight: bold;
+    margin-bottom: 5px;
+    text-decoration: none;
+    color: #000000;
+}
+
+.mainpage_address_description {
+    
+}

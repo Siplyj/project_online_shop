@@ -1,0 +1,91 @@
+[
+  {
+    "id": "men-01",
+    "url": "t-shirt_tai-dai_relaxed_fit",
+    "name": "T-shirt tai-dai relaxed fit",
+    "description": "T-shirt tai-dai relaxed fit",
+    "price": 24.99,
+    "sizes": ["S", "M", "L"],
+    "countryOfOrigin": "Poland",
+    "material": "Cotton",
+    "number_of_images": 4
+  },
+  {
+    "id": "men-02",
+    "url": "cotton_stretch_t-shirt",
+    "name": "Cotton stretch T-shirt",
+    "description": "Cotton stretch T-shirt",
+    "price": 19.99,
+    "sizes": ["S", "M", "L", "XL"],
+    "countryOfOrigin": "Italy",
+    "material": "Cotton",
+    "number_of_images": 4
+  },
+  {
+    "id": "men-03",
+    "url": "plaid_flannel_shirt",
+    "name": "Plaid flannel shirt",
+    "description": "Plaid flannel shirt",
+    "price": 49.99,
+    "sizes": ["S", "M", "L", "XL"],
+    "countryOfOrigin": "Italy",
+    "material": "Flannel",
+    "number_of_images": 4
+  },
+  {
+    "id": "men-04",
+    "url": "thermo-regulated_cotton_shirt",
+    "name": "Thermo-regulated cotton shirt",
+    "description": "Thermo-regulated cotton shirt",
+    "price": 29.99,
+    "price_before_discount": 39.99,
+    "sizes": ["S", "M", "L", "XL"],
+    "countryOfOrigin": "Italy",
+    "material": "Cotton",
+    "number_of_images": 4
+  },
+  {
+    "id": "men-05",
+    "url": "cotton_relaxed-fit_shirt",
+    "name": "Cotton relaxed-fit shirt",
+    "description": "Cotton relaxed-fit shirt",
+    "price": 49.99,
+    "sizes": ["S", "M", "L", "XL"],
+    "countryOfOrigin": "Poland",
+    "material": "Cotton",
+    "number_of_images": 4
+  },
+  {
+    "id": "men-06",
+    "url": "cotton_trousers",
+    "name": "Cotton trousers",
+    "description": "Cotton trousers",
+    "price": 49.99,
+    "sizes": ["S", "M", "XL"],
+    "countryOfOrigin": "Italy",
+    "material": "Cotton",
+    "number_of_images": 4
+  },
+  {
+    "id": "men-07",
+    "url": "waterproof_nylon_trench_coat",
+    "name": "Waterproof nylon trench coat",
+    "description": "Waterproof nylon trench coat",
+    "price": 119.99,
+    "sizes": ["S", "M", "L", "XL"],
+    "countryOfOrigin": "Spain",
+    "material": "Nylon",
+    "number_of_images": 4
+  },
+  {
+    "id": "men-08",
+    "url": "cotton_jogger_trousers",
+    "name": "Cotton jogger trousers",
+    "description": "Cotton jogger trousers",
+    "price": 39.99,
+    "sizes": ["S", "M", "L", "XL"],
+    "countryOfOrigin": "Italy",
+    "material": "Cotton",
+    "number_of_images": 4
+  }
+]

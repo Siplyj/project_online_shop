@@ -1,0 +1,47 @@
+.mainpage_brands_outer_wrapper {
+  overflow: hidden;
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+.mainpage_brands_wrapper {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  gap: 20px;
+  margin: 0 auto 30px;
+  max-width: var(--max-wrapper-width);
+}
+
+.mainpage_brands_title {
+  font-size: 1.5rem;
+}
+
+.mainpage_brands_slider {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.mainpage_brands_slideTrack {
+  display: flex;
+  animation: scroll 60s linear infinite;
+  width: max-content;
+}
+
+.mainpage_brands_slide {
+  height: 30px;
+  padding-right: 150px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+/* Анимация бесконечной прокрутки */
+@keyframes scroll {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}

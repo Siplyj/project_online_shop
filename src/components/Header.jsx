@@ -7,9 +7,9 @@ const Header = () => {
         <div className={classes.header_wrapper}>
             <header className={classes.header}>
 
-                <div className={classes.header_logo}>
+                <Link to="/" className={classes.header_logo}>
                     <img className={classes.header_logo_image} src="../files/logo.svg" alt="Newtone" title="Newtone" />
-                </div>
+                </Link>
 
                 <div className={classes.header_icons}>
                     <div className={classes.header_icon}>
@@ -28,44 +28,44 @@ const Header = () => {
 
                 <div className={classes.header_categories}>
                     <div className={classes.header_gender}>
-                        <Link className={classes.header_gender_link} to="/woman">Женщинам
+                        <Link className={classes.header_gender_link} to="/women">For women
                             <span className="material-symbols-outlined">keyboard_arrow_down</span>
                         </Link>
                         <ul className={classes.header_gender_dropdown_menu}>
                             <div className={classes.header_gender_dropdown_items}>
                                 <li className={classes.header_gender_dropdown_item}>
-                                    <Link to="/woman/popular">Популярное</Link>
+                                    <Link to="/women/popular">Popular</Link>
                                 </li>
                                 <li className={classes.header_gender_dropdown_item}>
-                                    <Link to="/woman/clothes">Одежда</Link>
+                                    <Link to="/women/clothes">Clothing</Link>
                                 </li>
                                 <li className={classes.header_gender_dropdown_item}>
-                                    <Link to="/woman/shoes">Обувь</Link>
+                                    <Link to="/women/shoes">Shoes</Link>
                                 </li>
                                 <li className={classes.header_gender_dropdown_item}>
-                                    <Link to="/woman/accessories">Аксессуары</Link>
+                                    <Link to="/women/accessories">Accessories</Link>
                                 </li>
                             </div>
                         </ul>
                     </div>
         
                     <div className={classes.header_gender}>
-                        <Link className={classes.header_gender_link} to="/man">Мужчинам
+                        <Link className={classes.header_gender_link} to="/men">For men
                             <span className="material-symbols-outlined">keyboard_arrow_down</span>
                         </Link>
                         <ul className={classes.header_gender_dropdown_menu}>
                             <div className={classes.header_gender_dropdown_items}>
                                 <li className={classes.header_gender_dropdown_item}>
-                                    <Link to="/man/popular">Популярное</Link>
+                                    <Link to="/women/popular">Popular</Link>
                                 </li>
                                 <li className={classes.header_gender_dropdown_item}>
-                                    <Link to="/man/clothes">Одежда</Link>
+                                    <Link to="/women/clothes">Clothing</Link>
                                 </li>
                                 <li className={classes.header_gender_dropdown_item}>
-                                    <Link to="/man/shoes">Обувь</Link>
+                                    <Link to="/women/shoes">Shoes</Link>
                                 </li>
                                 <li className={classes.header_gender_dropdown_item}>
-                                    <Link to="/man/accessories">Аксессуары</Link>
+                                    <Link to="/women/accessories">Accessories</Link>
                                 </li>
                             </div>
                         </ul>

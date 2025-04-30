@@ -3,12 +3,23 @@
   grid-template-columns: repeat(4, 1fr); /* 4 равные колонки */
   gap: 20px;
   max-width: var(--max-wrapper-width);
-  margin: 0 auto;
+  margin: 0 auto 2.5%;
 }
 
-.mainpage_categories_wrapper a:nth-child(1),
-.mainpage_categories_wrapper a:nth-child(2) {
+.mainpage_categories_container {
+  position: relative;
+  display: inline-block;
   grid-column: span 2;
+}
+
+.mainpage_categories_text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 4rem;
+  text-shadow: 0 0 10px rgba(0,0,0,0.5);
 }
 
 .mainpage_categories_big_image,
