@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
 import classes from './ProductPage.module.css';
+import ProductsSlider from '../components/ProductsSlider';
 
 function ProductPage() {
   const { category, product_url } = useParams();
@@ -65,6 +66,7 @@ function ProductPage() {
   };
 
   return (
+    <>
     <div className={classes.product_wrapper} >
       <div className={classes.product_slider} >
         <div className={classes.product_slider_big_image}>
@@ -92,11 +94,11 @@ function ProductPage() {
             return (
               <div key={imgNumber} className={classes.product_small_image_wrapper}>
                 <img
-                  src={`../files/catalog/${category}/${product.id.slice(-2)}_${product.url}/${imgNumber}.webp`}
-                  alt={`${product.name} ${imgNumber}`}
-                  className={`${classes.product_small_image} ${imgNumber === imageNumber ? classes.product_small_image_selected : ''}`}
-                  onClick={() => setImageNumber(imgNumber)}
-                />
+                src={`../files/catalog/${category}/${product.id.slice(-2)}_${product.url}/${imgNumber}.webp`}
+                alt={`${product.name} ${imgNumber}`}
+                className={`${classes.product_small_image} ${imgNumber === imageNumber ? classes.product_small_image_selected : ''}`}
+                onClick={() => setImageNumber(imgNumber)}
+              />
               </div>
             );
           })}
@@ -126,14 +128,19 @@ function ProductPage() {
         <button className={classes.product_cart_button}>
           Add to cart
         </button>
-      </div>
+
+
+
+        {/*<p>{product.description}</p>
       
-      {/*<p>{product.description}</p>
-      
-      <p><strong>Material:</strong> {product.material}</p>
-      <p><strong>Country of origin:</strong> {product.countryOfOrigin}</p>*/}
-      
+        <p><strong>Material:</strong> {product.material}</p>
+        <p><strong>Country of origin:</strong> {product.countryOfOrigin}</p>*/}
+
+       </div>
     </div>
+    <ProductsSlider title="See more" gender={product.gender} />
+    </>
+
   );
 }
 

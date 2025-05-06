@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 import { useState, useEffect, useRef } from 'react';
-import classes from './MainPageProducts.module.css';
+import classes from './ProductsSlider.module.css';
 
-const MainPageProducts = ({title, gender}) => {
+const ProductsSlider = ({title, description, gender}) => {
   const [products, setProducts] = useState([]);
   const [startIndex, setStartIndex] = useState(0);
   const [itemsPerRow, setItemsPerRow] = useState(1);
@@ -75,7 +75,7 @@ const MainPageProducts = ({title, gender}) => {
   };
 
   const loadProducts = async () => {
-    const response = await fetch(`./files/products.json`);
+    const response = await fetch('/files/products.json');
     if (!response.ok) throw new Error('Error loading products');
     return await response.json();
   };
@@ -83,7 +83,7 @@ const MainPageProducts = ({title, gender}) => {
   return (
     <div className={classes.mainpage_products_wrapper}>
       <p className={classes.mainpage_products_title}>{title}</p>
-      <p className={classes.mainpage_products_description}>New arrivals</p>
+      {description && <p className={classes.mainpage_products_description}>{description}</p>}
 
       <section className={classes.mainpage_products_outer_wrapper}>
         <button
@@ -104,7 +104,7 @@ const MainPageProducts = ({title, gender}) => {
               products.map((product, index) => (
                 <Link
                   key={product.id}
-                  to={`${gender}/${product.url}`}
+                  to={`/${gender}/${product.url}`}
                   className={classes.mainpage_product_card}
                   style={{ width: `${cardWidth}px` }}
                 >
@@ -118,7 +118,7 @@ const MainPageProducts = ({title, gender}) => {
                     }
 
                     <img
-                      src={`./files/catalog/${gender}/${product.id.slice(-2)}_${product.url}/01.webp`}
+                      src={`/files/catalog/${gender}/${product.id.slice(-2)}_${product.url}/01.webp`}
                       alt={product.name}
                       loading="lazy"
                       ref={index === 0 ? firstImageRef : null}
@@ -164,4 +164,4 @@ const MainPageProducts = ({title, gender}) => {
   );
 };
 
-export default MainPageProducts;
+export default ProductsSlider;
