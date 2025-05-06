@@ -42,6 +42,15 @@
   height: auto;
 }
 
+.mainpage_product_discount {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  background-color: #000000;
+  color: #ffffff;
+  padding: 2px 5px;
+}
+
 .mainpage_product_image img {
   width: 100%;
   height: auto;

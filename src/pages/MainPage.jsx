@@ -11,8 +11,8 @@ const MainPage = () => {
     return (
         <>
             <MainPageCategories />
-            <MainPageProducts title="Women’s clothing" category="women" />
-            <MainPageProducts title="Men’s clothing" category="men" />
+            <MainPageProducts title="Women’s clothing" gender="women" />
+            <MainPageProducts title="Men’s clothing" gender="men" />
             <MainPageBrands />
             <MainPageAddress />
         </>
