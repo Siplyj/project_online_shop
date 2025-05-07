@@ -145,7 +145,7 @@
 
 .product_selected_size:hover,
 .product_cart_button:hover {
-    background-color: #616677;
+    background-color: var(--color-hover-dark-gray);
 }
 
 .product_size {
@@ -192,11 +192,11 @@
 }
 
 .product_cart_item_info:visited {
-    color: black;
+    color: #000000;
 }
 
 .product_size:hover,
 .product_cart_control_button:hover,
 .product_cart_item_info:hover {
-    background-color: var(--color-hover-gray);
+    background-color: var(--color-hover-light-gray);
 }

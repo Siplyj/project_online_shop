@@ -12,9 +12,10 @@
     --color-background-light: #ffffff;
     --color-background-dark: #2d2d2d;
     --color-background-main: #585858;
-    --color-dark-gray: #525665;
-    --color-light-gray: #f7f7f7;
-    --color-hover-gray: #ededed;
+    --color-dark-gray: #616677;
+    --color-hover-dark-gray: #525665;
+    --color-light-gray: #ededed;
+    --color-hover-light-gray: #f7f7f7;
     --color-scrollbar-thumb: #cccccc;
     --max-wrapper-width: 90%;
 }

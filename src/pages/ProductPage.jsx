@@ -72,6 +72,8 @@ function ProductPage() {
   const handleAddToCart = () => {
     dispatch(addItem({
       id: product.id,
+      gender: product.gender,
+      url: product.url,
       name: product.name,
       price: product.price,
       image: `/files/catalog/${category}/${product.id.slice(-2)}_${product.url}/01.webp`,
@@ -127,9 +129,9 @@ function ProductPage() {
 
         <div className={classes.product_data}>
           <h1 className={classes.product_name}>{product.name}</h1>
-          <span className={classes.product_price}>${product.price}</span>
+          <span className={classes.product_price}>{product.price} €</span>
           {product.price_before_discount && (
-            <span className={classes.price_before_discount}>${product.price_before_discount}</span>
+            <span className={classes.price_before_discount}>{product.price_before_discount} €</span>
           )}
           <p className={classes.product_sizes_title}>Sizes</p>
           <div className={classes.product_sizes}>
@@ -179,7 +181,7 @@ function ProductPage() {
 
          </div>
       </div>
-      <ProductsSlider title="See more" gender={product.gender} />
+      <ProductsSlider title="New arrivals" gender={product.gender} />
     </>
 
   );

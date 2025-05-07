@@ -1,12 +1,28 @@
-# React + Vite
+# Shopping Cart Page:
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+### Project overview
+* About project
+* Features
+* Technologies used
 
-Currently, two official plugins are available:
+**About project**
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+An online clothing store built with modern front-end technologies. The application allows users to browse a catalog of products, view detailed product pages, add items to a shopping cart, adjust quantities, and place orders. The project focuses on delivering a clean and responsive user experience, efficient state management, and intuitive navigation.
 
-## Expanding the ESLint configuration
+**Features**
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- Individual product detail pages with images and size options
+- Add-to-cart functionality with quantity adjustments
+- Shopping cart page with total price calculation
+- Confirmation modal for sensitive actions like item removal
+- Navigation across catalog and product pages
+- Clean and maintainable code structure
+
+**Technologies used**
+
+- React - for building dynamic and reusable UI components
+- Redux Toolkit - for centralized state management (cart, products)
+- React Router - for client-side routing and navigation
+- CSS Modules - for scoped, maintainable styling
+- Material Symbols - for consistent and modern iconography
+- Vite - as the build tool for fast development and optimized production builds
