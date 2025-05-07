@@ -4,6 +4,7 @@ import RootLayout from './pages/RootLayout';
 import MainPage from './pages/MainPage';
 import CatalogPage from './pages/CatalogPage';
 import ProductPage from './pages/ProductPage';
+import CartPage from './pages/CartPage';
 
 function App() {
   const categories = ['women', 'men'];
@@ -29,6 +30,10 @@ function App() {
             element: <ProductPage />,
           }
         ]
+      },
+      {
+        path: 'cart',
+        element: <CartPage />,
       }
     ]
   }

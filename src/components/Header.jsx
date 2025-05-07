@@ -1,8 +1,12 @@
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 import classes from './Header.module.css';
 
 const Header = () => {
+    const totalAmount = useSelector((state) => state.cart.totalAmount);
+    const totalQuantity = useSelector((state) => state.cart.totalQuantity);
+
     return (
         <div className={classes.header_wrapper}>
             <header className={classes.header}>
@@ -21,7 +25,14 @@ const Header = () => {
                         </Link>
                         <Link className={classes.header_icon_link} to="/cart">
                             <span className={`${classes.header_icon_symbol} material-symbols-outlined`}>shopping_cart</span>
-                            <span className={classes.header_total_price}>0.00 EUR</span>
+
+                            {totalQuantity > 0 && (
+                              <span className={classes.header_cart_badge}>{totalQuantity}</span>
+                            )}
+
+                            <span className={classes.header_total_price}>
+                              {totalAmount.toFixed(2)} EUR
+                            </span>
                         </Link>
                     </div>
                 </div>

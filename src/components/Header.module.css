@@ -44,11 +44,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: white;
+    color: var(--color-text-light);
     width: auto;
     height: 40px;
     text-decoration: none;
     font-weight: 100;
+    position: relative;
 }
 
 .header_icon_symbol {
@@ -59,6 +60,21 @@
 .header_total_price {
     font-size: 18px;
     white-space: nowrap;
+}
+
+.header_cart_badge {
+  position: absolute;
+  top: -5px;
+  left: 20px;
+  background-color: #ffffff;
+  color: #000000;
+  font-size: 10px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 

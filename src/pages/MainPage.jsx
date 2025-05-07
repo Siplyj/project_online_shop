@@ -1,6 +1,5 @@
 // import { Link } from 'react-router-dom';
 
-import classes from './MainPage.module.css';
 import MainPageCategories from '../components/MainPageCategories';
 import ProductsSlider from '../components/ProductsSlider';
 import MainPageBrands from '../components/MainPageBrands';

@@ -3,7 +3,7 @@
     flex-direction: row;
     justify-content: center;
     flex-wrap: wrap;
-    margin: 0 auto 30px;
+    margin: 0px auto 30px;
     max-width: var(--max-wrapper-width);
 }
 
@@ -63,7 +63,7 @@
 }
 
 .product_slider_small_images::-webkit-scrollbar-thumb {
-    background-color: #cccccc;
+    background-color: var(--color-scrollbar-thumb);
     border-radius: 10px;
 }
 
@@ -84,12 +84,9 @@
     border: 2px solid transparent;
 }
 
-.product_small_image:hover {
-    border: 2px solid #525665;
-}
-
+.product_small_image:hover,
 .product_small_image_selected {
-    border: 2px solid #525665;
+    border: 2px solid var(--color-dark-gray);
 }
 
 .product_data {
@@ -118,7 +115,7 @@
 .price_before_discount {
     font-size: 1.25rem;
     text-decoration: line-through;
-    color: #5c5c5c;
+    color: var(--color-dark-gray);
 }
 
 .product_sizes_title {
@@ -138,8 +135,8 @@
 
 .product_selected_size,
 .product_cart_button {
-    background-color: #525665;
-    color: #ffffff;
+    background-color: var(--color-dark-gray);
+    color: var(--color-text-light);
 }
 
 .product_selected_size {
@@ -152,15 +149,54 @@
 }
 
 .product_size {
-    background-color: #f7f7f7;
+    background-color: var(--color-light-gray);
 }
 
-.product_size:hover {
-    background-color: #ededed;
-}
-
-.product_cart_button {
+.product_cart_button,
+.product_cart_controls {
     cursor: pointer;
     border: none;
-    padding: 20px 100px;
+    width: 270px;
+    height: 60px;
+    display: block;
+}
+
+.product_cart_controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.product_cart_control_button,
+.product_cart_item_info {
+    height: 100%;
+    cursor: pointer;
+    border: none;
+    background-color: var(--color-light-gray);
+}
+
+.product_cart_control_button {
+    aspect-ratio: 4 / 5;
+    font-size: 2.5rem;
+}
+
+.product_cart_item_info {
+    flex-grow: 1;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: #000000;
+    background-color: var(--color-light-gray);
+}
+
+.product_cart_item_info:visited {
+    color: black;
+}
+
+.product_size:hover,
+.product_cart_control_button:hover,
+.product_cart_item_info:hover {
+    background-color: var(--color-hover-gray);
 }
