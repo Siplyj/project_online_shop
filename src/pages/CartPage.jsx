@@ -3,29 +3,70 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
 
 import classes from './CartPage.module.css';
-import { removeItem, increaseQuantity, decreaseQuantity } from '../store/cartSlice';
+import { removeItem, removeAllItems, increaseQuantity, decreaseQuantity, setItemQuantity } from '../store/cartSlice';
 
 function CartPage() {
   const items = useSelector((state) => state.cart.items);
   const totalAmount = useSelector((state) => state.cart.totalAmount);
   const dispatch = useDispatch();
   const [quantities, setQuantities] = useState({});
+  const [confirmAction, setConfirmAction] = useState(null);
   const [showConfirmModal, setShowConfirmModal] = useState(false);
   const [itemToDelete, setItemToDelete] = useState(null);
+  const [tempQuantity, setTempQuantity] = useState({});
+
+  useEffect(() => {
+    const initialQuantities = {};
+    items.forEach((item) => {
+      initialQuantities[`${item.id}_${item.size}`] = item.quantity;
+    });
+    setTempQuantity(initialQuantities);
+  }, [items]);
 
   if (items.length === 0) {
-    return <div>Cart is empty</div>;
+
+    return (
+      <>
+        <h1 className={classes.cart_title}>Oops! Your shopping cart is empty</h1>
+      </>
+      
+    )
   }
 
   const handleDecrease = (item) => {
     if (item.quantity === 1) {
-      setItemToDelete(item); // Сохраняем товар, который хотим удалить
-      setShowConfirmModal(true); // Показываем модалку
+      setConfirmAction({ type: 'removeItem', payload: item });
+      setShowConfirmModal(true);
     } else {
       dispatch(decreaseQuantity({ id: item.id, size: item.size }));
     }
   };
 
+  const handleDeleteAll = () => {
+    setConfirmAction({ type: 'clearCart' });
+    setShowConfirmModal(true);
+  };
+
+  const handleChange = (e, item) => {
+    const value = e.target.value;
+    setTempQuantity(prev => ({
+      ...prev,
+      [`${item.id}_${item.size}`]: value
+    }));
+  };
+
+  const handleBlur = (item) => {
+    const newQuantity = parseInt(tempQuantity[`${item.id}_${item.size}`], 10);
+
+    if (!isNaN(newQuantity) && newQuantity > 0) {
+      dispatch(setItemQuantity({ id: item.id, size: item.size, quantity: newQuantity }));
+    } else {
+      setTempQuantity(prev => ({
+        ...prev,
+        [`${item.id}_${item.size}`]: item.quantity
+      }));
+    }
+  };
 
   return (
     <div className={classes.cart_wrapper}>
@@ -67,13 +108,9 @@ function CartPage() {
                   <input
                     className={classes.cart_list_item_quantity}
                     type="text"
-                    value={item.quantity}
-                    onChange={(e) => {
-                      const newQuantity = parseInt(e.target.value, 10);
-                      if (!isNaN(newQuantity)) {
-                        dispatch(setItemQuantity({ id: item.id, size: item.size, quantity: newQuantity }));
-                      }
-                    }}
+                    value={tempQuantity[`${item.id}_${item.size}`] ?? ''}
+                    onChange={(e) => handleChange(e, item)}
+                    onBlur={() => handleBlur(item)}
                   />
                   <button
                     className={classes.cart_list_item_control_button}
@@ -96,6 +133,18 @@ function CartPage() {
 
             </li>
           ))}
+
+          <li>
+            <div className={classes.cart_delete_all_wrapper}>
+              <button
+                onClick={() => handleDeleteAll()}
+                className={classes.cart_delete_all_button}
+              >
+                Clear shopping cart
+              </button>
+            </div>
+          </li>
+
         </ul>
 
         <div className={classes.cart_total_wrapper}>
@@ -111,19 +160,31 @@ function CartPage() {
       {showConfirmModal && (
         <div className={classes.cart_modal_overlay}>
           <div className={classes.cart_modal_content}>
-            <p>Are you sure you want to remove<br/>"{itemToDelete.name}"<br/>from the cart?`</p>
+            <p>
+              {confirmAction?.type === 'removeItem'
+                ? <>Are you sure you want to remove<br/>"{confirmAction.payload.name}"<br/>from the cart?</>
+                : "Are you sure you want to clear the entire cart?"}
+            </p>
             <div className={classes.cart_modal_buttons}>
               <button
                 onClick={() => {
-                  dispatch(removeItem({ id: itemToDelete.id, size: itemToDelete.size }));
+                  if (confirmAction?.type === 'removeItem') {
+                    dispatch(removeItem({ id: confirmAction.payload.id, size: confirmAction.payload.size }));
+                  } else if (confirmAction?.type === 'clearCart') {
+                    dispatch(removeAllItems());
+                  }
                   setShowConfirmModal(false);
+                  setConfirmAction(null);
                 }}
                 className={classes.cart_modal_confirm_button}
               >
-                Delete
+                Confirm
               </button>
               <button
-                onClick={() => setShowConfirmModal(false)}
+                onClick={() => {
+                  setShowConfirmModal(false);
+                  setConfirmAction(null);
+                }}
                 className={classes.cart_modal_cancel_button}
               >
                 Cancel
