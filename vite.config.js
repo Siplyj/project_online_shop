@@ -1,12 +1,16 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import fs from 'fs';
+import path from 'path';
 
-// https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
   server: {
-    host: '0.0.0.0', // Слушать на всех интерфейсах (локальный IP-адрес)
-    port: 5173, // Порт по умолчанию
-    strictPort: true, // Использовать только этот порт, если он занят
+    host: '0.0.0.0',
+    // https: {
+    //   key: fs.readFileSync(path.resolve(__dirname, 'localhost+3-key.pem')),
+    //   cert: fs.readFileSync(path.resolve(__dirname, 'localhost+3.pem')),
+    // },
+    port: 5173,
   },
-})
+});

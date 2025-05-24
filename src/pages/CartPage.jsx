@@ -1,19 +1,26 @@
 import { Link } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
 
 import classes from './CartPage.module.css';
-import { removeItem, removeAllItems, increaseQuantity, decreaseQuantity, setItemQuantity } from '../store/cartSlice';
+import CartPageStep1 from '../components/CartPageStep1';
+import CartPageStep2 from '../components/CartPageStep2';
+import CheckoutButton from '../components/CheckoutButton';
 
 function CartPage() {
   const items = useSelector((state) => state.cart.items);
   const totalAmount = useSelector((state) => state.cart.totalAmount);
-  const dispatch = useDispatch();
-  const [quantities, setQuantities] = useState({});
-  const [confirmAction, setConfirmAction] = useState(null);
-  const [showConfirmModal, setShowConfirmModal] = useState(false);
-  const [itemToDelete, setItemToDelete] = useState(null);
+
+  const [currentStep, setCurrentStep] = useState(1);
   const [tempQuantity, setTempQuantity] = useState({});
+
+  const [formData, setFormData] = useState({
+    fullName: '',
+    email: '',
+    address: '',
+    city: '',
+    zip: '',
+  });
 
   useEffect(() => {
     const initialQuantities = {};
@@ -24,127 +31,50 @@ function CartPage() {
   }, [items]);
 
   if (items.length === 0) {
-
     return (
-      <>
-        <h1 className={classes.cart_title}>Oops! Your shopping cart is empty</h1>
-      </>
-      
-    )
+      <h1 className={classes.cart_title}>Oops! Your shopping cart is empty</h1>
+    );
   }
 
-  const handleDecrease = (item) => {
-    if (item.quantity === 1) {
-      setConfirmAction({ type: 'removeItem', payload: item });
-      setShowConfirmModal(true);
-    } else {
-      dispatch(decreaseQuantity({ id: item.id, size: item.size }));
-    }
-  };
-
-  const handleDeleteAll = () => {
-    setConfirmAction({ type: 'clearCart' });
-    setShowConfirmModal(true);
-  };
-
-  const handleChange = (e, item) => {
-    const value = e.target.value;
-    setTempQuantity(prev => ({
-      ...prev,
-      [`${item.id}_${item.size}`]: value
-    }));
-  };
-
-  const handleBlur = (item) => {
-    const newQuantity = parseInt(tempQuantity[`${item.id}_${item.size}`], 10);
-
-    if (!isNaN(newQuantity) && newQuantity > 0) {
-      dispatch(setItemQuantity({ id: item.id, size: item.size, quantity: newQuantity }));
-    } else {
-      setTempQuantity(prev => ({
-        ...prev,
-        [`${item.id}_${item.size}`]: item.quantity
-      }));
-    }
+  const isFormValid = (formData) => {
+    return Object.values(formData).every((value) => value.trim() !== '');
   };
 
   return (
     <div className={classes.cart_wrapper}>
-      <h1 className={classes.cart_title}>Shopping cart</h1>
+      <h1 className={classes.cart_title}>
+        {currentStep === 1 && 'Shopping cart'}
+        {currentStep === 2 && 'Delivery details'}
+      </h1>
 
       <div className={classes.cart_list_wrapper}>
-
         <ul className={classes.cart_list}>
-          {items.map((item) => (
-            <li
-              key={`${item.id}_${item.size}`}
-              className={classes.cart_list_item}
-            >
-              <Link to={`/${item.gender}/${item.url}`}>
-                <img
-                  src={`/files/catalog/${item.gender}/${item.id.slice(-2)}_${item.url}/01.webp`}
-                  alt={item.name}
-                  className={classes.cart_list_item_image}
-                />
-              </Link>
+          {currentStep === 1 && (
+            <CartPageStep1
+              items={items}
+              totalAmount={totalAmount}
+              tempQuantity={tempQuantity}
+              setTempQuantity={setTempQuantity}
+              goToNextStep={() => setCurrentStep(2)}
+            />
+          )}
 
-              <div>
-                <Link
-                  to={`/${item.gender}/${item.url}`}
-                  className={classes.cart_list_item_name_link}
-                >
-                  <h3 className={classes.cart_list_item_name}>{item.name}</h3>
-                </Link>
-                <div className={classes.cart_list_item_size}>Size: {item.size}</div>
-                <div className={classes.cart_list_item_price}>Price: {item.price} €</div>
-                <div className={classes.cart_list_item_controls}>
-                  <button
-                    className={classes.cart_list_item_control_button}
-                    onClick={() => handleDecrease(item)}
-                  >
-                    <span className="material-symbols-outlined">remove</span>
-                  </button>
+          {currentStep === 2 && (
+            <>
+              <CartPageStep2 formData={formData} setFormData={setFormData} />
 
-                  <input
-                    className={classes.cart_list_item_quantity}
-                    type="text"
-                    value={tempQuantity[`${item.id}_${item.size}`] ?? ''}
-                    onChange={(e) => handleChange(e, item)}
-                    onBlur={() => handleBlur(item)}
-                  />
+              <li>
+                <div className={classes.cart_prev_step_wrapper}>
                   <button
-                    className={classes.cart_list_item_control_button}
-                    onClick={() => dispatch(increaseQuantity({ id: item.id, size: item.size }))}
+                    onClick={() => setCurrentStep(1)}
+                    className={classes.cart_prev_step_button}
                   >
-                    <span className="material-symbols-outlined">add</span>
+                    Prev step
                   </button>
                 </div>
-                <div className={classes.cart_list_item_total_price}>
-                  {(item.price * item.quantity).toFixed(2)} €
-                </div>
-              </div>
-
-              <button
-                className={classes.cart_list_item_remove_button}
-                onClick={() => dispatch(removeItem({ id: item.id, size: item.size }))}
-              >
-                ×
-              </button>
-
-            </li>
-          ))}
-
-          <li>
-            <div className={classes.cart_delete_all_wrapper}>
-              <button
-                onClick={() => handleDeleteAll()}
-                className={classes.cart_delete_all_button}
-              >
-                Clear shopping cart
-              </button>
-            </div>
-          </li>
-
+              </li>
+            </>
+          )}
         </ul>
 
         <div className={classes.cart_total_wrapper}>
@@ -152,48 +82,25 @@ function CartPage() {
             <span>Total:</span>
             <span>{totalAmount.toFixed(2)} €</span>
           </div>
-          <button className={classes.cart_order_button}>Order</button>
-        </div>
 
+          {currentStep === 1 && (
+            <button
+              className={classes.cart_order_button}
+              onClick={() => setCurrentStep(2)}
+            >
+              Next step
+            </button>
+          )}
+
+          {currentStep === 2 && (
+            <CheckoutButton
+              cartItems={items}
+              formData={formData}
+              disabled={!isFormValid(formData)}
+            />
+          )}
+        </div>
       </div>
-
-      {showConfirmModal && (
-        <div className={classes.cart_modal_overlay}>
-          <div className={classes.cart_modal_content}>
-            <p>
-              {confirmAction?.type === 'removeItem'
-                ? <>Are you sure you want to remove<br/>"{confirmAction.payload.name}"<br/>from the cart?</>
-                : "Are you sure you want to clear the entire cart?"}
-            </p>
-            <div className={classes.cart_modal_buttons}>
-              <button
-                onClick={() => {
-                  if (confirmAction?.type === 'removeItem') {
-                    dispatch(removeItem({ id: confirmAction.payload.id, size: confirmAction.payload.size }));
-                  } else if (confirmAction?.type === 'clearCart') {
-                    dispatch(removeAllItems());
-                  }
-                  setShowConfirmModal(false);
-                  setConfirmAction(null);
-                }}
-                className={classes.cart_modal_confirm_button}
-              >
-                Confirm
-              </button>
-              <button
-                onClick={() => {
-                  setShowConfirmModal(false);
-                  setConfirmAction(null);
-                }}
-                className={classes.cart_modal_cancel_button}
-              >
-                Cancel
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-
     </div>
   );
 }

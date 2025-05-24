@@ -5,6 +5,8 @@ import MainPage from './pages/MainPage';
 import CatalogPage from './pages/CatalogPage';
 import ProductPage from './pages/ProductPage';
 import CartPage from './pages/CartPage';
+import SuccessPage from './pages/SuccessPage';
+import CancelPage from './pages/CancelPage';
 
 function App() {
   const categories = ['women', 'men'];
@@ -34,6 +36,14 @@ function App() {
       {
         path: 'cart',
         element: <CartPage />,
+      },
+      {
+        path: 'success',
+        element: <SuccessPage />,
+      },
+      {
+        path: 'cancel',
+        element: <CancelPage />,
       }
     ]
   }
