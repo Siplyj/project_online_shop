@@ -1,90 +1,135 @@
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { useAuthenticator } from '@aws-amplify/ui-react';
 
 import classes from './Header.module.css';
 
-const Header = () => {
-    const totalAmount = useSelector((state) => state.cart.totalAmount);
-    const totalQuantity = useSelector((state) => state.cart.totalQuantity);
+const Header = ({ onLoginClick }) => {
+    const { user, authStatus } = useAuthenticator((context) => [
+        context.user,
+        context.authStatus,
+    ]);
 
-    return (
-        <div className={classes.header_wrapper}>
-            <header className={classes.header}>
+    const handleProfileClick = (e) => {
+        if (authStatus === 'configuring') {
+            e.preventDefault();
+            return;
+        }
 
-                <Link to="/" className={classes.header_logo}>
-                    <img className={classes.header_logo_image} src="../files/logo.svg" alt="Newtone" title="Newtone" />
-                </Link>
+        if (authStatus !== 'authenticated') {
+            e.preventDefault();
+            onLoginClick();
+        }
+  };
 
-                <div className={classes.header_icons}>
-                    <div className={classes.header_icon}>
-                        <Link className={classes.header_icon_link} to="/account">
-                            <span className={`${classes.header_icon_symbol} material-symbols-outlined`}>person</span>
-                        </Link>
-                        <Link className={classes.header_icon_link} to="/favorite">
-                            <span className={`${classes.header_icon_symbol} material-symbols-outlined`}>favorite</span>
-                        </Link>
-                        <Link className={classes.header_icon_link} to="/cart">
-                            <span className={`${classes.header_icon_symbol} material-symbols-outlined`}>shopping_cart</span>
+  const totalAmount = useSelector((state) => state.cart.totalAmount);
+  const totalQuantity = useSelector((state) => state.cart.totalQuantity);
 
-                            {totalQuantity > 0 && (
-                              <span className={classes.header_cart_badge}>{totalQuantity}</span>
-                            )}
+  return (
+    <div className={classes.header_wrapper}>
+      <header className={classes.header}>
+        <Link to="/" className={classes.header_logo}>
+          <img
+            className={classes.header_logo_image}
+            src="../files/logo.svg"
+            alt="Newtone"
+            title="Newtone"
+          />
+        </Link>
 
-                            <span className={classes.header_total_price}>
-                              {totalAmount.toFixed(2)} EUR
-                            </span>
-                        </Link>
-                    </div>
-                </div>
+        <div className={classes.header_icons}>
+          <div className={classes.header_icon}>
+            <Link
+              className={classes.header_icon_link}
+              to={authStatus === 'authenticated' ? '/account' : '#'}
+              onClick={handleProfileClick}
+            >
+              <span className={`${classes.header_icon_symbol} material-symbols-outlined`} >
+                person
+              </span>
+            </Link>
 
-                <div className={classes.header_categories}>
-                    <div className={classes.header_gender}>
-                        <Link className={classes.header_gender_link} to="/women">For women
-                            <span className="material-symbols-outlined">keyboard_arrow_down</span>
-                        </Link>
-                        <ul className={classes.header_gender_dropdown_menu}>
-                            <div className={classes.header_gender_dropdown_items}>
-                                <li className={classes.header_gender_dropdown_item}>
-                                    <Link to="/women/popular">Popular</Link>
-                                </li>
-                                <li className={classes.header_gender_dropdown_item}>
-                                    <Link to="/women/clothes">Clothing</Link>
-                                </li>
-                                <li className={classes.header_gender_dropdown_item}>
-                                    <Link to="/women/shoes">Shoes</Link>
-                                </li>
-                                <li className={classes.header_gender_dropdown_item}>
-                                    <Link to="/women/accessories">Accessories</Link>
-                                </li>
-                            </div>
-                        </ul>
-                    </div>
-        
-                    <div className={classes.header_gender}>
-                        <Link className={classes.header_gender_link} to="/men">For men
-                            <span className="material-symbols-outlined">keyboard_arrow_down</span>
-                        </Link>
-                        <ul className={classes.header_gender_dropdown_menu}>
-                            <div className={classes.header_gender_dropdown_items}>
-                                <li className={classes.header_gender_dropdown_item}>
-                                    <Link to="/women/popular">Popular</Link>
-                                </li>
-                                <li className={classes.header_gender_dropdown_item}>
-                                    <Link to="/women/clothes">Clothing</Link>
-                                </li>
-                                <li className={classes.header_gender_dropdown_item}>
-                                    <Link to="/women/shoes">Shoes</Link>
-                                </li>
-                                <li className={classes.header_gender_dropdown_item}>
-                                    <Link to="/women/accessories">Accessories</Link>
-                                </li>
-                            </div>
-                        </ul>
-                    </div>
-                </div>
-            </header>
+            <Link className={classes.header_icon_link} to="/favorite">
+              <span
+                className={`${classes.header_icon_symbol} material-symbols-outlined`}
+              >
+                favorite
+              </span>
+            </Link>
+            <Link className={classes.header_icon_link} to="/cart">
+              <span
+                className={`${classes.header_icon_symbol} material-symbols-outlined`}
+              >
+                shopping_cart
+              </span>
+
+              {totalQuantity > 0 && (
+                <span className={classes.header_cart_badge}>
+                  {totalQuantity}
+                </span>
+              )}
+
+              <span className={classes.header_total_price}>
+                {totalAmount.toFixed(2)} EUR
+              </span>
+            </Link>
+          </div>
         </div>
-    )
-}
+
+        <div className={classes.header_categories}>
+          <div className={classes.header_gender}>
+            <Link className={classes.header_gender_link} to="/women">
+              For women
+              <span className="material-symbols-outlined">
+                keyboard_arrow_down
+              </span>
+            </Link>
+            <ul className={classes.header_gender_dropdown_menu}>
+              <div className={classes.header_gender_dropdown_items}>
+                <li className={classes.header_gender_dropdown_item}>
+                  <Link to="/women/popular">Popular</Link>
+                </li>
+                <li className={classes.header_gender_dropdown_item}>
+                  <Link to="/women/clothes">Clothing</Link>
+                </li>
+                <li className={classes.header_gender_dropdown_item}>
+                  <Link to="/women/shoes">Shoes</Link>
+                </li>
+                <li className={classes.header_gender_dropdown_item}>
+                  <Link to="/women/accessories">Accessories</Link>
+                </li>
+              </div>
+            </ul>
+          </div>
+
+          <div className={classes.header_gender}>
+            <Link className={classes.header_gender_link} to="/men">
+              For men
+              <span className="material-symbols-outlined">
+                keyboard_arrow_down
+              </span>
+            </Link>
+            <ul className={classes.header_gender_dropdown_menu}>
+              <div className={classes.header_gender_dropdown_items}>
+                <li className={classes.header_gender_dropdown_item}>
+                  <Link to="/women/popular">Popular</Link>
+                </li>
+                <li className={classes.header_gender_dropdown_item}>
+                  <Link to="/women/clothes">Clothing</Link>
+                </li>
+                <li className={classes.header_gender_dropdown_item}>
+                  <Link to="/women/shoes">Shoes</Link>
+                </li>
+                <li className={classes.header_gender_dropdown_item}>
+                  <Link to="/women/accessories">Accessories</Link>
+                </li>
+              </div>
+            </ul>
+          </div>
+        </div>
+      </header>
+    </div>
+  );
+};
 
 export default Header;

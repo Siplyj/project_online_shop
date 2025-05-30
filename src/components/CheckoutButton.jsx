@@ -20,7 +20,7 @@ function CheckoutButton({ cartItems, formData }) {
     }
   };
 
-  return <button className={classes.cart_order_button} onClick={handleCheckout}>Перейти к оплате</button>;
+  return <button className={classes.cart_order_button} onClick={handleCheckout}>Order and pay</button>;
 }
 
 export default CheckoutButton;
