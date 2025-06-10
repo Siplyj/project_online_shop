@@ -5,21 +5,21 @@ import { useAuthenticator } from '@aws-amplify/ui-react';
 import classes from './Header.module.css';
 
 const Header = ({ onLoginClick }) => {
-    const { user, authStatus } = useAuthenticator((context) => [
-        context.user,
-        context.authStatus,
-    ]);
+  const { user, authStatus } = useAuthenticator((context) => [
+    context.user,
+    context.authStatus,
+  ]);
 
-    const handleProfileClick = (e) => {
-        if (authStatus === 'configuring') {
-            e.preventDefault();
-            return;
-        }
+  const handleProfileClick = (e) => {
+    if (authStatus === 'configuring') {
+      e.preventDefault();
+      return;
+    }
 
-        if (authStatus !== 'authenticated') {
-            e.preventDefault();
-            onLoginClick();
-        }
+    if (authStatus !== 'authenticated') {
+      e.preventDefault();
+      onLoginClick();
+    }
   };
 
   const totalAmount = useSelector((state) => state.cart.totalAmount);
@@ -44,7 +44,9 @@ const Header = ({ onLoginClick }) => {
               to={authStatus === 'authenticated' ? '/account' : '#'}
               onClick={handleProfileClick}
             >
-              <span className={`${classes.header_icon_symbol} material-symbols-outlined`} >
+              <span
+                className={`${classes.header_icon_symbol} material-symbols-outlined`}
+              >
                 person
               </span>
             </Link>

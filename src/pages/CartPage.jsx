@@ -13,10 +13,14 @@ function CartPage() {
 
   const [currentStep, setCurrentStep] = useState(1);
   const [tempQuantity, setTempQuantity] = useState({});
+  const [wasSubmitted, setWasSubmitted] = useState(false);
+  const [isFormValid, setIsFormValid] = useState(false);
+
 
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
+    phone: '',
     address: '',
     city: '',
     zip: '',
@@ -35,10 +39,6 @@ function CartPage() {
       <h1 className={classes.cart_title}>Oops! Your shopping cart is empty</h1>
     );
   }
-
-  const isFormValid = (formData) => {
-    return Object.values(formData).every((value) => value.trim() !== '');
-  };
 
   return (
     <div className={classes.cart_wrapper}>
@@ -61,7 +61,12 @@ function CartPage() {
 
           {currentStep === 2 && (
             <>
-              <CartPageStep2 formData={formData} setFormData={setFormData} />
+              <CartPageStep2
+                formData={formData}
+                setFormData={setFormData}
+                setIsFormValid={setIsFormValid}
+                wasSubmitted={wasSubmitted}
+              />
 
               <li>
                 <div className={classes.cart_prev_step_wrapper}>
@@ -96,7 +101,8 @@ function CartPage() {
             <CheckoutButton
               cartItems={items}
               formData={formData}
-              disabled={!isFormValid(formData)}
+              disabled={!isFormValid}
+              setWasSubmitted={setWasSubmitted}
             />
           )}
         </div>

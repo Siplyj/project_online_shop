@@ -1,0 +1,163 @@
+.orders_wrapper {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.orders_wrapper_title {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.no_orders_description {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #666;
+}
+
+.order_card {
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.order_header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 10px 20px;
+  cursor: pointer;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.order_header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.order_header > :nth-child(-n+3) {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.order_header > :nth-child(1) {
+  text-align: left;
+}
+
+.order_header > :nth-child(2) {
+  text-align: center;
+}
+
+.order_header > :nth-child(3) {
+  text-align: right;
+}
+
+.order_header > :nth-child(4) {
+  flex-basis: 100%;
+  text-align: left;
+}
+
+.order_header:hover {
+  background-color: #eaeaea;
+}
+
+.order_items {
+  padding: 1rem;
+  background-color: #fff;
+}
+
+.order_item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 0;
+  border-top: 1px solid #eee;
+}
+
+.order_item:first-child {
+  border-top: none;
+}
+
+.customer_info {
+  background-color: #f9f9f9;
+  padding: 1rem;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+}
+
+.customer_info p {
+  margin: 0.25rem 0;
+}
+
+.order_item_image_wrapper {
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.order_item_image {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+  transition: transform 0.2s ease;
+}
+
+.order_item_image:hover {
+  transform: scale(1.05);
+}
+
+.order_item_details {
+  flex-grow: 1;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+.order_item_details:hover .order_item_name {
+  text-decoration: underline;
+}
+
+.order_item_name {
+  font-weight: bold;
+  margin-bottom: 0.25rem;
+}
+
+.order_item_info {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.order_item_price {
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.order_payment_wrapper {
+  margin-top: 1.5rem;
+  text-align: right;
+}
+
+.order_pay_button {
+  cursor: pointer;
+  border: none;
+  width: 100px;
+  height: 35px;
+  display: block;
+  margin-left: auto;
+  background-color: var(--color-dark-gray);
+  color: var(--color-text-light);
+  font-size: 1rem;
+  transition: background-color 0.2s ease;
+}
+
+.order_pay_button:hover {
+  background-color: var(--color-hover-dark-gray);
+}

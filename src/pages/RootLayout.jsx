@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import { Outlet, useNavigate } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setLoginStatus, setUser } from '../store/authSlice';
 import Header from '../components/Header';
@@ -12,7 +13,7 @@ import AmplifyForm from '../components/AmplifyForm';
 const RootLayout = () => {
   const [showAuthModal, setShowAuthModal] = useState(false);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const { user, authStatus } = useAuthenticator((context) => [
     context.user,
@@ -32,10 +33,10 @@ const RootLayout = () => {
               email: attributes?.email || '',
             })
           );
-
+        
           setShowAuthModal(false);
 
-          navigate('/account');
+          // navigate('/account');
         } catch (error) {
           console.error('Error when retrieving user attributes:', error);
         }
@@ -50,21 +51,22 @@ const RootLayout = () => {
     fetchData();
   }, [authStatus, user, dispatch]);
 
+  // Hide modal (ESC)
   useEffect(() => {
-  const handleEsc = (event) => {
-    if (event.key === 'Escape') {
-      setShowAuthModal(false);
+    const handleEsc = (event) => {
+      if (event.key === 'Escape') {
+        setShowAuthModal(false);
+      }
+    };
+
+    if (showAuthModal) {
+      window.addEventListener('keydown', handleEsc);
     }
-  };
 
-  if (showAuthModal) {
-    window.addEventListener('keydown', handleEsc);
-  }
-
-  return () => {
-    window.removeEventListener('keydown', handleEsc);
-  };
-}, [showAuthModal]);
+    return () => {
+      window.removeEventListener('keydown', handleEsc);
+    };
+  }, [showAuthModal]);
 
   return (
     <>

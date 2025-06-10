@@ -252,6 +252,12 @@
   outline: none;
 }
 
+.cart_form_input_error {
+  color: red;
+  font-size: 0.9rem;
+  margin-top: 4px;
+}
+
 .cart_payment_group {
   display: flex;
   flex-direction: column;
