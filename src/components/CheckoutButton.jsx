@@ -2,13 +2,13 @@ import { useAuthenticator } from '@aws-amplify/ui-react';
 import { useState } from 'react';
 import classes from '../pages/CartPage.module.css';
 
-function CheckoutButton({ cartItems, formData, disabled, setWasSubmitted }) {
+function CheckoutButton({ cartItems, formData, disabled, setWasSubmitted, onLoginClick }) {
   const { user } = useAuthenticator((context) => [context.user]);
   const [showError, setShowError] = useState(false);
 
   if (!user) {
     return (
-      <button className={classes.cart_order_button} disabled>
+      <button className={classes.cart_order_button} onClick={() => onLoginClick()}>
         Please log in to order
       </button>
     );

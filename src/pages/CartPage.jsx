@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useOutletContext } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
 
@@ -15,7 +15,7 @@ function CartPage() {
   const [tempQuantity, setTempQuantity] = useState({});
   const [wasSubmitted, setWasSubmitted] = useState(false);
   const [isFormValid, setIsFormValid] = useState(false);
-
+  const { onLoginClick } = useOutletContext();
 
   const [formData, setFormData] = useState({
     fullName: '',
@@ -103,6 +103,7 @@ function CartPage() {
               formData={formData}
               disabled={!isFormValid}
               setWasSubmitted={setWasSubmitted}
+              onLoginClick={onLoginClick}
             />
           )}
         </div>
