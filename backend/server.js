@@ -103,7 +103,6 @@ app.post('/generate-order-id', async (req, res) => {
   }
 });
 
-
 // Creating a Stripe session + order pre-recording
 app.post('/create-checkout-session', async (req, res) => {
   const { cartItems, userId, formData, orderId } = req.body;
@@ -183,5 +182,95 @@ app.get('/orders/:userId', async (req, res) => {
     res.status(500).json({ error: 'Failed to receive orders' });
   }
 });
+
+
+app.get('/favorites/:userId', async (req, res) => {
+  const { userId } = req.params;
+
+  try {
+    const data = await dynamo.query({
+      TableName: 'UserFavorites',
+      KeyConditionExpression: 'userId = :uid',
+      ExpressionAttributeValues: { ':uid': userId },
+    }).promise();
+
+    res.json(data.Items);
+  } catch (err) {
+    console.error('Error fetching favorites:', err);
+    res.status(500).json({ error: 'Failed to fetch favorites' });
+  }
+});
+
+// Add item to favorites
+app.post('/favorites/add', async (req, res) => {
+  console.log("Получены данные:", req.body);
+  const { userId, product } = req.body;
+
+  if (!userId || !product?.id || !product?.size) {
+    return res.status(400).json({ error: 'Invalid data' });
+  }
+
+  const productKey = `${product.id}_${product.size}`;
+
+  try {
+    // Check if the product is in favorites
+    const existing = await dynamo.get({
+      TableName: 'UserFavorites',
+      Key: {
+        userId,
+        productId: productKey,
+      },
+    }).promise();
+
+    const data = await dynamo.query({
+      TableName: 'UserFavorites',
+      KeyConditionExpression: 'userId = :uid',
+      ExpressionAttributeValues: { ':uid': userId },
+    }).promise();
+
+    if (existing.Item) {
+      return res.status(200).json({ message: 'Already in favorites' });
+    }
+
+    // Add if the item is not in the list
+    await dynamo.put({
+      TableName: 'UserFavorites',
+      Item: {
+        userId,
+        productId: productKey,
+        ...product,
+      },
+    }).promise();
+
+    res.status(200).json({ message: 'Added to favorites' });
+  } catch (err) {
+    console.error('DynamoDB error:', err);
+    res.status(500).json({ error: 'Failed to add favorite' });
+  }
+});
+
+// Delete item from favorites
+app.post('/favorites/remove', async (req, res) => {
+  const { userId, productId } = req.body;
+
+  if (!userId || !productId) {
+    return res.status(400).json({ error: 'Invalid data' });
+  }
+
+  try {
+    await dynamo.delete({
+      TableName: 'UserFavorites',
+      Key: {
+        userId,
+        productId
+      },
+    }).promise();
+    res.status(200).json({ message: 'Removed from favorites' });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Failed to remove favorite' });
+  }
+});
+
 
 app.listen(4242, () => console.log('The server is running on http://localhost:4242'));
