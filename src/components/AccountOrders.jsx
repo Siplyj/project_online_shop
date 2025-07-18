@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import classes from './AccountOrders.module.css';
+import { BACKEND_URL } from '../../config';
 
 const AccountOrders = () => {
   const [orders, setOrders] = useState([]);
@@ -14,7 +15,8 @@ const AccountOrders = () => {
 
     const fetchOrders = async () => {
       try {
-        const response = await fetch(`http://localhost:4242/orders/${userId}`);
+        const response = await fetch(`${BACKEND_URL}/orders/${userId}`);
+
         if (!response.ok) throw new Error('Server error');
         const data = await response.json();
         data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
@@ -44,7 +46,8 @@ const AccountOrders = () => {
 
   const handleCheckout = async (order) => {
     try {
-      const response = await fetch('http://localhost:4242/create-checkout-session', {
+      const response = await fetch(`${BACKEND_URL}/create-checkout-session`, {
+
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

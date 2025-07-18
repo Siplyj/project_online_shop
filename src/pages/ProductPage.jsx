@@ -9,6 +9,8 @@ import ProductsSlider from '../components/ProductsSlider';
 
 import { useAuthenticator } from '@aws-amplify/ui-react';
 
+import { BACKEND_URL } from '../../config';
+
 function ProductPage() {
   const { user } = useAuthenticator((context) => [context.user]);
   const { category, product_url } = useParams();
@@ -63,7 +65,7 @@ function ProductPage() {
     const loadFavorites = async () => {
       if (!user) return;
       try {
-        const res = await fetch(`http://localhost:4242/favorites/${user.userId}`);
+        const res = await fetch(`${BACKEND_URL}/favorites/${user.userId}`);
         const data = await res.json();
         dispatch(setFavorites(data));
       } catch (err) {
@@ -74,6 +76,7 @@ function ProductPage() {
     loadFavorites();
   }, [user]);
 
+  // Getting the available sizes and selecting the first one by default
   useEffect(() => {
     if (!product || !selectedSize) {
       setFavoriteForSelectedSize(false);
@@ -134,7 +137,7 @@ function ProductPage() {
       // Remove from favorites
       dispatch(removeFavorite({ id: product.id, size: selectedSize }));
       try {
-        await fetch('http://localhost:4242/favorites/remove', {
+        await fetch(`${BACKEND_URL}/favorites/remove`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -161,7 +164,7 @@ function ProductPage() {
       );
 
       try {
-        await fetch('http://localhost:4242/favorites/add', {
+        await fetch(`${BACKEND_URL}/favorites/add`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({

@@ -1,3 +1,4 @@
+const serverless = require('serverless-http');
 const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
@@ -10,11 +11,11 @@ const app = express();
 const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
 
 // AWS config
-AWS.config.update({
-  region: process.env.AWS_REGION,
-  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-});
+// AWS.config.update({
+//   region: process.env.AWS_REGION,
+//   accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+//   secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+// });
 const dynamo = new AWS.DynamoDB.DocumentClient();
 
 // CORS
@@ -272,5 +273,8 @@ app.post('/favorites/remove', async (req, res) => {
   }
 });
 
+module.exports.handler = serverless(app);
 
-app.listen(4242, () => console.log('The server is running on http://localhost:4242'));
+if (process.env.IS_LOCAL) {
+  app.listen(3000, () => console.log('The server is running on http://localhost:3000'));
+}

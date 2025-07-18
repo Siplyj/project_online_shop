@@ -1,6 +1,7 @@
 import { useAuthenticator } from '@aws-amplify/ui-react';
 import { useState } from 'react';
 import classes from '../pages/CartPage.module.css';
+import { BACKEND_URL } from '../../config';
 
 function CheckoutButton({ cartItems, formData, disabled, setWasSubmitted, onLoginClick }) {
   const { user } = useAuthenticator((context) => [context.user]);
@@ -26,8 +27,7 @@ function CheckoutButton({ cartItems, formData, disabled, setWasSubmitted, onLogi
 
     try {
       // Get orderId from the server
-      const idResponse = await fetch(
-        'http://localhost:4242/generate-order-id',
+      const idResponse = await fetch(`${BACKEND_URL}/generate-order-id`,
         {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -44,8 +44,7 @@ function CheckoutButton({ cartItems, formData, disabled, setWasSubmitted, onLogi
       }
 
       // Create a Stripe session by passing the orderId
-      const response = await fetch(
-        'http://localhost:4242/create-checkout-session',
+      const response = await fetch(`${BACKEND_URL}/create-checkout-session`,
         {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },

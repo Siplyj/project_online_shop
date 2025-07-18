@@ -1,0 +1,92 @@
+.favorites_wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+}
+
+.favorites_title {
+  text-align: center;
+  font-size: 1.25rem;
+  margin-top: 50px;
+}
+
+.favorites_grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 2rem;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.favorite_card {
+  position: relative;
+  max-width: 300px;
+  margin: 0 auto;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  overflow: hidden;
+  text-align: center;
+  background: #fff;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  padding: 1rem;
+}
+
+.image_wrapper {
+  position: relative;
+}
+
+.favorite_image {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  transition: 0.3s;
+}
+
+.favorite_icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.favorite_icon span {
+  color: red;
+  font-size: 20px;
+}
+
+.favorite_link {
+  text-decoration: none;
+  color: #333;
+}
+
+.favorite_link:hover h2 {
+  text-decoration: underline;
+}
+
+p {
+  margin: 0.3rem 0;
+}
+
+.add_to_cart_button {
+  margin-top: 0.5rem;
+  background: #000;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.add_to_cart_button:hover {
+  background: #333;
+}
+
+.empty_message {
+  padding: 2rem;
+  text-align: center;
+  font-size: 1.5rem;
+}

@@ -9,7 +9,7 @@ import CartPage from './pages/CartPage';
 import SuccessPage from './pages/SuccessPage';
 import CancelPage from './pages/CancelPage';
 import AccountPage from './pages/AccountPage';
-import FavoritePage from './pages/FavoritePage';
+import FavoritesPage from './pages/FavoritesPage';
 
 function App() {
   const router = createBrowserRouter([
@@ -36,7 +36,7 @@ function App() {
         },
         {
           path: 'favorite',
-          element: <FavoritePage />,
+          element: <FavoritesPage />,
         },
         {
           path: 'cart',
