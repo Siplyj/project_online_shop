@@ -1,10 +1,15 @@
 service: newtone-backend
 
+frameworkVersion: '>=4.0.0'
+
 provider:
   name: aws
   runtime: nodejs18.x
   stage: dev
   region: eu-central-1
+  environment:
+    STRIPE_SECRET_KEY: ${env:STRIPE_SECRET_KEY}
+    STRIPE_WEBHOOK_SECRET: ${env:STRIPE_WEBHOOK_SECRET}
   iam:
     role:
       statements:
@@ -12,14 +17,14 @@ provider:
           Action:
             - dynamodb:*
           Resource:
-            - arn:aws:dynamodb:eu-central-1:${aws:accountId}:table/*
-  environment:
-    STRIPE_SECRET_KEY: ${env:STRIPE_SECRET_KEY}
-    STRIPE_WEBHOOK_SECRET: ${env:STRIPE_WEBHOOK_SECRET}
+            - arn:aws:dynamodb:eu-central-1:*:table/*
+
+plugins:
+  - serverless-offline
 
 functions:
-  app:
-    handler: server.handler
+  mainApi:
+    handler: server-main.handler
     events:
       - http:
           path: /
@@ -30,5 +35,11 @@ functions:
           method: ANY
           cors: true
 
-plugins:
-  - serverless-offline
+  stripeWebhook:
+    handler: server-stripe.handler
+    events:
+      - http:
+          path: /webhook
+          method: POST
+          cors: true
+          payload: '2.0'   # ⚠ Используется payload v2 для raw body
