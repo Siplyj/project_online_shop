@@ -6,6 +6,7 @@ import { useAuthenticator } from '@aws-amplify/ui-react';
 import classes from './FavoritesPage.module.css';
 import { setFavorites, removeFavorite } from '../store/favoritesSlice';
 import { addItem, increaseQuantity, decreaseQuantity } from '../store/cartSlice';
+import { removeFavoriteItem } from '../utils/RemoveFavoriteToggle';
 
 import { BACKEND_URL } from '../../config';
 
@@ -71,7 +72,12 @@ function FavoritesPage() {
                 <button
                   className={classes.favorite_icon}
                   onClick={() =>
-                    dispatch(removeFavorite({ id: item.id, size: item.size }))
+                    removeFavoriteItem({
+                      dispatch,
+                      userId: user.userId,
+                      product: item,
+                      size: item.size,
+                    })
                   }
                 >
                   <span

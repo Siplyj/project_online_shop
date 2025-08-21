@@ -6,6 +6,8 @@ import classes from './ProductPage.module.css';
 import { addItem, increaseQuantity, decreaseQuantity } from '../store/cartSlice';
 import { addFavorite, removeFavorite, setFavorites } from '../store/favoritesSlice';
 import ProductsSlider from '../components/ProductsSlider';
+import { removeFavoriteItem } from '../utils/RemoveFavoriteToggle';
+import { addFavoriteItem } from '../utils/AddFavoriteToggle';
 
 import { useAuthenticator } from '@aws-amplify/ui-react';
 
@@ -135,54 +137,21 @@ function ProductPage() {
 
     if (isFavorite) {
       // Remove from favorites
-      dispatch(removeFavorite({ id: product.id, size: selectedSize }));
-      try {
-        await fetch(`${BACKEND_URL}/favorites/remove`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            userId,
-            productId: productKey,
-          }),
-        });
-      } catch (err) {
-        console.error('Error while deleting from favorites', err);
-      }
+      removeFavoriteItem({
+        dispatch,
+        userId,
+        product,
+        size: selectedSize
+      })
     } else {
       // Add to favorites
-
-      dispatch(
-        addFavorite({
-          id: product.id,
-          size: selectedSize,
-          name: product.name,
-          url: product.url,
-          gender: product.gender,
-          image: `/files/catalog/${category}/${product.id.slice(-2)}_${product.url}/01.webp`,
-          price: product.price,
-        })
-      );
-
-      try {
-        await fetch(`${BACKEND_URL}/favorites/add`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            userId,
-            product: {
-              id: product.id,
-              size: selectedSize,
-              name: product.name,
-              url: product.url,
-              gender: product.gender,
-              image: `/files/catalog/${category}/${product.id.slice(-2)}_${product.url}/01.webp`,
-              price: product.price,
-            },
-          }),
-        });
-      } catch (err) {
-        console.error('Error when adding to favorites:', err);
-      }
+      addFavoriteItem({
+        dispatch,
+        userId,
+        product,
+        selectedSize,
+        category
+      })
     }
   };
 
