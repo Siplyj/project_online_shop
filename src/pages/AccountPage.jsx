@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUser, setUserId, logoutAction } from '../store/authSlice';
 import { fetchAuthSession } from 'aws-amplify/auth';
+import { AccountSettings } from '@aws-amplify/ui-react';
 
 import AccountOrders from '../components/AccountOrders';
 
@@ -14,6 +15,7 @@ const AccountPage = () => {
     context.authStatus,
     context.signOut,
     context.user,
+    context.deleteUser,
   ]);
   const userId = useSelector((state) => state.auth.userId);
   const navigate = useNavigate();
@@ -36,6 +38,11 @@ const AccountPage = () => {
     navigate('/');
   };
 
+  const handleSuccess = () => {
+    alert('Your account has been successfully deleted')
+  }
+
+
   if (authStatus === 'configuring') {
     return <div>Loading...</div>;
   }
@@ -47,6 +54,9 @@ const AccountPage = () => {
   return (
   <div>
       {userId ? <AccountOrders userId={userId} /> : <p>Loading orders...</p>}
+      <div style={{ maxWidth: '200px', margin: '20px auto' }}>
+        <AccountSettings.DeleteUser onSuccess={handleSuccess} />
+      </div>
   </div>
 );
 };
