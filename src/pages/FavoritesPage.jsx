@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
 import classes from './FavoritesPage.module.css';
@@ -11,6 +11,10 @@ function FavoritesPage() {
   const favoriteItems = useSelector((state) => state.favorites.items);
   const cartItems = useSelector((state) => state.cart.items);
   const userId = useSelector((state) => state.auth.userId);
+
+  if (!userId) {
+    return <Navigate to="/" replace />;
+  }
 
   if (!favoriteItems || favoriteItems.length === 0) {
     return <div className={classes.favorites_title}>You have no favorites yet.</div>;

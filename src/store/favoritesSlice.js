@@ -36,10 +36,13 @@ const favoritesSlice = createSlice({
         state.items.push(action.payload);
       }
     },
+    clearFavorites: (state) => {
+      state.items = [];
+    },
   },
 });
 
-export const { setFavorites, addFavorite, removeFavorite, toggleFavorite } = favoritesSlice.actions;
+export const { setFavorites, addFavorite, removeFavorite, toggleFavorite, clearFavorites } = favoritesSlice.actions;
 
 // Selector for the number of favorites
 export const selectFavoriteCount = (state) => state.favorites.items.length;
