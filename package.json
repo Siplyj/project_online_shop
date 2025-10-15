@@ -12,7 +12,7 @@
     "stripe.prod": "dotenv -e .env.prod -- sh -c 'stripe listen --forward-to $STRIPE_WEBHOOK_URL'"
   },
   "dependencies": {
-    "@aws-amplify/ui-react": "^6.11.2",
+    "@aws-amplify/ui-react": "^6.13.0",
     "@reduxjs/toolkit": "^2.7.0",
     "@stripe/react-stripe-js": "^3.7.0",
     "@stripe/stripe-js": "^7.3.0",

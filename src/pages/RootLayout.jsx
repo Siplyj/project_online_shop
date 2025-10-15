@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { Outlet } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -9,6 +9,7 @@ const RootLayout = () => {
   const [showAuthModal, setShowAuthModal] = useState(false);
   const { login, clearAuth, authStatus, user } = useAuth();
 
+  // useEffect for login/logout
   useEffect(() => {
     if (authStatus === 'authenticated' && user) {
       login(user);
@@ -18,6 +19,7 @@ const RootLayout = () => {
     }
   }, [authStatus, user]);
 
+  // ESC-button handler
   useEffect(() => {
     const handleEsc = (event) => {
       if (event.key === 'Escape') {
@@ -32,6 +34,8 @@ const RootLayout = () => {
     };
   }, [showAuthModal]);
 
+  const amplifyFormMemo = useMemo(() => <AmplifyForm />, []);
+
   return (
     <>
       <Header onLoginClick={() => setShowAuthModal(true)} />
@@ -41,7 +45,8 @@ const RootLayout = () => {
       </div>
 
       <Footer />
-      {showAuthModal && <AmplifyForm />}
+
+      {showAuthModal && amplifyFormMemo}
     </>
   );
 };

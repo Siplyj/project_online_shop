@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { setFavorites } from './favoritesSlice';
 
 const initialState = {
   isLoggedIn: false,
@@ -19,10 +20,14 @@ const authSlice = createSlice({
     setUserId(state, action) {
       state.userId = action.payload;
     },
-    logoutAction(state) {
+    logoutAction(state, action) {
       state.isLoggedIn = false;
       state.user = null;
       state.userId = null;
+
+      if (action.payload?.dispatch) {
+        action.payload.dispatch(setFavorites([]));
+      }
     },
   },
 });

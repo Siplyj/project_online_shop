@@ -7,10 +7,10 @@ export default defineConfig({
   plugins: [react()],
   server: {
     host: '0.0.0.0',
-    // https: {
-    //   key: fs.readFileSync(path.resolve(__dirname, 'localhost+3-key.pem')),
-    //   cert: fs.readFileSync(path.resolve(__dirname, 'localhost+3.pem')),
-    // },
+    https: {
+      key: fs.readFileSync(path.resolve(__dirname, 'localhost+3-key.pem')),
+      cert: fs.readFileSync(path.resolve(__dirname, 'localhost+3.pem')),
+    },
     port: 5173,
   },
 });
