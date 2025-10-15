@@ -1,22 +1,23 @@
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import useAuth from '../hooks/useAuth';
+import { selectFavoriteCount } from '../store/favoritesSlice';
 
+import useAuth from '../hooks/useAuth';
 import classes from './Header.module.css';
 
 const Header = ({ onLoginClick }) => {
   const { authStatus, logout } = useAuth();
 
-  const userId = useSelector((state) => state.auth.userId);
   const totalAmount = useSelector((state) => state.cart.totalAmount);
   const totalQuantity = useSelector((state) => state.cart.totalQuantity);
+  const totalFavoriteQuantity = useSelector(selectFavoriteCount);
 
   const handleProfileClick = (e) => {
     if (authStatus === 'configuring') {
       e.preventDefault();
       return;
     }
-
+    
     if (authStatus !== 'authenticated') {
       e.preventDefault();
       onLoginClick();
@@ -52,7 +53,7 @@ const Header = ({ onLoginClick }) => {
               </span>
             </Link>
 
-            {userId && (
+            {authStatus === 'authenticated' && (
               <Link className={classes.header_icon_link} to="#" onClick={handleLogoutClick}>
                 <span className={`${classes.header_icon_symbol} material-symbols-outlined`}>
                   logout
@@ -64,6 +65,10 @@ const Header = ({ onLoginClick }) => {
               <span className={`${classes.header_icon_symbol} material-symbols-outlined`}>
                 favorite
               </span>
+
+              {totalFavoriteQuantity > 0 && (
+                <span className={classes.header_cart_badge}>{totalFavoriteQuantity}</span>
+              )}
             </Link>
 
             <Link className={classes.header_icon_link} to="/cart">

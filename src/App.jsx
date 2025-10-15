@@ -1,4 +1,11 @@
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { useAuthenticator } from '@aws-amplify/ui-react';
+
+import { setUser, setUserId, setLoginStatus } from './store/authSlice';
+import { setFavorites } from './store/favoritesSlice';
+import { BACKEND_URL } from '../config';
 
 // Pages
 import RootLayout from './pages/RootLayout';
@@ -12,6 +19,33 @@ import AccountPage from './pages/AccountPage';
 import FavoritesPage from './pages/FavoritesPage';
 
 function App() {
+  const dispatch = useDispatch();
+  const { user } = useAuthenticator((context) => [context.user]);
+
+  useEffect(() => {
+    if (!user?.userId) return;
+
+    // Setting up user and authorization in Redux
+    dispatch(setUser(user));
+    dispatch(setUserId(user.userId));
+    dispatch(setLoginStatus(true));
+
+    // Download favorites
+    const fetchFavorites = async () => {
+      try {
+        const response = await fetch(`${BACKEND_URL}/favorites/${user.userId}`);
+        if (!response.ok) throw new Error('Error loading favorites');
+
+        const data = await response.json();
+        dispatch(setFavorites(data));
+      } catch (error) {
+        console.error('Error loading favorites:', error);
+      }
+    };
+
+    fetchFavorites();
+  }, [user, dispatch]);
+
   const router = createBrowserRouter([
     {
       path: '/',

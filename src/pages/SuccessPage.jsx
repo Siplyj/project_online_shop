@@ -11,7 +11,7 @@ function SuccessPage() {
 
   return (
     <div style={{ padding: '2rem', textAlign: 'center' }}>
-      <h1>✅ Payment was successful!</h1>
+      <h1>Payment was successful!</h1>
       <p>Thank you for your order.</p>
     </div>
   );

@@ -1,47 +1,16 @@
-import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { useAuthenticator } from '@aws-amplify/ui-react';
 
 import classes from './FavoritesPage.module.css';
-import { setFavorites, removeFavorite } from '../store/favoritesSlice';
+import { removeFavorite } from '../store/favoritesSlice';
 import { addItem, increaseQuantity, decreaseQuantity } from '../store/cartSlice';
 import { removeFavoriteItem } from '../utils/RemoveFavoriteToggle';
 
-import { BACKEND_URL } from '../../config';
-
 function FavoritesPage() {
-  const { user } = useAuthenticator((context) => [context.user]);
   const dispatch = useDispatch();
   const favoriteItems = useSelector((state) => state.favorites.items);
   const cartItems = useSelector((state) => state.cart.items);
-
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const loadFavorites = async () => {
-      if (!user) {
-        setLoading(false);
-        return;
-      }
-
-      try {
-        const res = await fetch(`${BACKEND_URL}/favorites/${user.userId}`);
-        const data = await res.json();
-        dispatch(setFavorites(data));
-      } catch (err) {
-        console.error('Error loading favorites', err);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    loadFavorites();
-  }, [user, dispatch]);
-
-  if (loading) {
-    return <div className={classes.favorites_title}>Loading favorites...</div>;
-  }
+  const userId = useSelector((state) => state.auth.userId);
 
   if (!favoriteItems || favoriteItems.length === 0) {
     return <div className={classes.favorites_title}>You have no favorites yet.</div>;
@@ -72,12 +41,7 @@ function FavoritesPage() {
                 <button
                   className={classes.favorite_icon}
                   onClick={() =>
-                    removeFavoriteItem({
-                      dispatch,
-                      userId: user.userId,
-                      product: item,
-                      size: item.size,
-                    })
+                    removeFavoriteItem({ dispatch, userId, product: item, size: item.size })
                   }
                 >
                   <span
@@ -93,10 +57,7 @@ function FavoritesPage() {
                 </button>
               </div>
 
-              <Link
-                to={`/${item.gender}/${item.url}`}
-                className={classes.favorite_link}
-              >
+              <Link to={`/${item.gender}/${item.url}`} className={classes.favorite_link}>
                 <h2>{item.name}</h2>
               </Link>
               <p>Size: {item.size}</p>
@@ -127,9 +88,7 @@ function FavoritesPage() {
                     <button
                       className={classes.product_cart_control_button}
                       onClick={() =>
-                        dispatch(
-                          decreaseQuantity({ id: item.id, size: item.size })
-                        )
+                        dispatch(decreaseQuantity({ id: item.id, size: item.size }))
                       }
                     >
                       <span className="material-symbols-outlined">remove</span>
@@ -143,9 +102,7 @@ function FavoritesPage() {
                     <button
                       className={classes.product_cart_control_button}
                       onClick={() =>
-                        dispatch(
-                          increaseQuantity({ id: item.id, size: item.size })
-                        )
+                        dispatch(increaseQuantity({ id: item.id, size: item.size }))
                       }
                     >
                       <span className="material-symbols-outlined">add</span>
