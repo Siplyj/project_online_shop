@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import classes from './AccountOrders.module.css';
+import { asset } from '../utils/assets';
 import { BACKEND_URL } from '../../config';
 
 const AccountOrders = () => {
@@ -133,7 +134,7 @@ const AccountOrders = () => {
                       className={classes.order_item_image_wrapper}
                     >
                       <img
-                        src={item.image}
+                        src={asset(item.image)}
                         alt={item.name}
                         className={classes.order_item_image}
                       />

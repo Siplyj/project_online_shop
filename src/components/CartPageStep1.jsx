@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 
 import classes from '../pages/CartPage.module.css';
+import { asset } from '../utils/assets';
 import {
   removeItem,
   removeAllItems,
@@ -60,7 +61,7 @@ function CartPageStep1({ items, totalAmount, tempQuantity, setTempQuantity }) {
         <li key={`${item.id}_${item.size}`} className={classes.cart_list_item}>
           <Link to={`/${item.gender}/${item.url}`}>
             <img
-              src={`/files/catalog/${item.gender}/${item.id.slice(-2)}_${item.url}/01.webp`}
+              src={asset(`/files/catalog/${item.gender}/${item.id.slice(-2)}_${item.url}/01.webp`)}
               alt={item.name}
               className={classes.cart_list_item_image}
             />

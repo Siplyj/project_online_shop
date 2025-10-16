@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useState, useEffect, useRef } from 'react';
 import classes from './ProductsSlider.module.css';
+import { asset } from '../utils/assets';
 
 const ProductsSlider = ({title, description, gender}) => {
   const [products, setProducts] = useState([]);
@@ -75,7 +76,7 @@ const ProductsSlider = ({title, description, gender}) => {
   };
 
   const loadProducts = async () => {
-    const response = await fetch('/files/products.json');
+    const response = await fetch(asset('files/products.json'));
     if (!response.ok) throw new Error('Error loading products');
     return await response.json();
   };
@@ -118,7 +119,7 @@ const ProductsSlider = ({title, description, gender}) => {
                     }
 
                     <img
-                      src={`/files/catalog/${gender}/${product.id.slice(-2)}_${product.url}/01.webp`}
+                      src={asset(`files/catalog/${gender}/${product.id.slice(-2)}_${product.url}/01.webp`)}
                       alt={product.name}
                       loading="lazy"
                       ref={index === 0 ? firstImageRef : null}

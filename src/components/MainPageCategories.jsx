@@ -7,7 +7,7 @@ const MainPageCategories = () => {
             <Link className={classes.mainpage_categories_container} to="/women">
                 <img
                     className={classes.mainpage_categories_big_image}
-                    src="/files/mainpage/women.jpg"
+                    src="./files/mainpage/women.jpg"
                     alt="women category"
                 />
                 <div className={classes.mainpage_categories_text}>For women</div>
@@ -15,7 +15,7 @@ const MainPageCategories = () => {
             <Link className={classes.mainpage_categories_container} to="/men">
                 <img
                     className={classes.mainpage_categories_big_image}
-                    src="/files/mainpage/men.jpg"
+                    src="./files/mainpage/men.jpg"
                     alt="men category"
                 />
                 <div className={classes.mainpage_categories_text}>For men</div>
@@ -23,28 +23,28 @@ const MainPageCategories = () => {
             <Link to="/men">
                 <img
                     className={classes.mainpage_categories_small_image}
-                    src="/files/mainpage/image_small_1.jpg"
+                    src="./files/mainpage/image_small_1.jpg"
                     alt="men category"
                 />
             </Link>
             <Link to="/men">
                 <img
                     className={classes.mainpage_categories_small_image}
-                    src="/files/mainpage/image_small_2.jpg"
+                    src="./files/mainpage/image_small_2.jpg"
                     alt="men category"
                 />
             </Link>
             <Link to="/men">
                 <img
                     className={classes.mainpage_categories_small_image}
-                    src="/files/mainpage/image_small_3.jpg"
+                    src="./files/mainpage/image_small_3.jpg"
                     alt="men category"
                 />
             </Link>
             <Link to="/men">
                 <img
                     className={classes.mainpage_categories_small_image}
-                    src="/files/mainpage/image_small_4.jpg"
+                    src="./files/mainpage/image_small_4.jpg"
                     alt="men category"
                 />
             </Link>

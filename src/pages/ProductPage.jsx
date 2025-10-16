@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 
 import classes from './ProductPage.module.css';
+import { asset } from '../utils/assets';
 import { addItem, increaseQuantity, decreaseQuantity } from '../store/cartSlice';
 import { addFavorite, removeFavorite, setFavorites } from '../store/favoritesSlice';
 import ProductsSlider from '../components/ProductsSlider';
@@ -38,7 +39,7 @@ function ProductPage() {
       try {
         setLoading(true);
 
-        const response = await fetch(`/files/products.json`);
+        const response = await fetch(asset('files/products.json'));
         if (!response.ok) {
           throw new Error('File upload error');
         }
@@ -123,7 +124,7 @@ function ProductPage() {
         url: product.url,
         name: product.name,
         price: product.price,
-        image: `/files/catalog/${category}/${product.id.slice(-2)}_${product.url}/01.webp`,
+        image: `./files/catalog/${category}/${product.id.slice(-2)}_${product.url}/01.webp`,
         size: selectedSize,
       })
     );

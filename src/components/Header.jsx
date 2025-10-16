@@ -35,7 +35,7 @@ const Header = ({ onLoginClick }) => {
         <Link to="/" className={classes.header_logo}>
           <img
             className={classes.header_logo_image}
-            src="../files/logo.svg"
+            src="./files/logo.svg"
             alt="Newtone"
             title="Newtone"
           />
@@ -119,16 +119,16 @@ const Header = ({ onLoginClick }) => {
             <ul className={classes.header_gender_dropdown_menu}>
               <div className={classes.header_gender_dropdown_items}>
                 <li className={classes.header_gender_dropdown_item}>
-                  <Link to="/women/popular">Popular</Link>
+                  <Link to="/men/popular">Popular</Link>
                 </li>
                 <li className={classes.header_gender_dropdown_item}>
-                  <Link to="/women/clothes">Clothing</Link>
+                  <Link to="/men/clothes">Clothing</Link>
                 </li>
                 <li className={classes.header_gender_dropdown_item}>
-                  <Link to="/women/shoes">Shoes</Link>
+                  <Link to="/men/shoes">Shoes</Link>
                 </li>
                 <li className={classes.header_gender_dropdown_item}>
-                  <Link to="/women/accessories">Accessories</Link>
+                  <Link to="/men/accessories">Accessories</Link>
                 </li>
               </div>
             </ul>

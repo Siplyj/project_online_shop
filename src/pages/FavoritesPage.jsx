@@ -2,6 +2,7 @@ import { Link, Navigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
 import classes from './FavoritesPage.module.css';
+import { asset } from '../utils/assets';
 import { removeFavorite } from '../store/favoritesSlice';
 import { addItem, increaseQuantity, decreaseQuantity } from '../store/cartSlice';
 import { removeFavoriteItem } from '../utils/RemoveFavoriteToggle';
@@ -37,7 +38,7 @@ function FavoritesPage() {
                   className={classes.favorite_link}
                 >
                   <img
-                    src={item.image}
+                    src={asset(item.image)}
                     alt={item.name}
                     className={classes.favorite_image}
                   />

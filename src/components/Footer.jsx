@@ -13,30 +13,30 @@ const Footer = () => {
                 </div>
 
                 <Link to="/" className={classes.footer_logo}>
-                    <img className={classes.footer_logo_image} src="../files/logo.svg" alt="Newtone" title="Newtone" />
+                    <img className={classes.footer_logo_image} src="./files/logo.svg" alt="Newtone" title="Newtone" />
                 </Link>
 
                 <div className={classes.footer_social_icons}>
                     <Link to="https://telegram.com/" >
-                        <img className={classes.footer_social_image} src="../files/footer_icons/telegram.png" alt="Telegram" title="Telegram" />
+                        <img className={classes.footer_social_image} src="./files/footer_icons/telegram.png" alt="Telegram" title="Telegram" />
                     </Link>
                     <Link to="https://fb.com/" >
-                        <img className={classes.footer_social_image} src="../files/footer_icons/facebook.png" alt="Facebook" title="Facebook" />
+                        <img className={classes.footer_social_image} src="./files/footer_icons/facebook.png" alt="Facebook" title="Facebook" />
                     </Link>
                     <Link to="https://youtube.com/" >
-                        <img className={classes.footer_social_image} src="../files/footer_icons/youtube.png" alt="Youtube" title="Youtube" />
+                        <img className={classes.footer_social_image} src="./files/footer_icons/youtube.png" alt="Youtube" title="Youtube" />
                     </Link>
                     <Link to="https://instagram.com/" >
-                        <img className={classes.footer_social_image} src="../files/footer_icons/instagram.png" alt="Instagram" title="Instagram" />
+                        <img className={classes.footer_social_image} src="./files/footer_icons/instagram.png" alt="Instagram" title="Instagram" />
                     </Link>
                 </div>
 
                 <div className={classes.footer_payment_systems }>
-                    <img className={classes.footer_payment_system} src="../files/footer_icons/mastercard.svg" alt="Mastercard" title="Mastercard" />
-                    <img className={classes.footer_payment_system} src="../files/footer_icons/visa.svg" alt="Visa" title="Visa" />
-                    <img className={classes.footer_payment_system} src="../files/footer_icons/paypal.svg" alt="Paypal" title="Paypal" />
-                    <img className={classes.footer_payment_system} src="../files/footer_icons/google_pay.svg" alt="Google Pay" title="Google Pay" />
-                    <img className={classes.footer_payment_system} src="../files/footer_icons/apple_pay.svg" alt="Apple Pay" title="Apple Pay" />
+                    <img className={classes.footer_payment_system} src="./files/footer_icons/mastercard.svg" alt="Mastercard" title="Mastercard" />
+                    <img className={classes.footer_payment_system} src="./files/footer_icons/visa.svg" alt="Visa" title="Visa" />
+                    <img className={classes.footer_payment_system} src="./files/footer_icons/paypal.svg" alt="Paypal" title="Paypal" />
+                    <img className={classes.footer_payment_system} src="./files/footer_icons/google_pay.svg" alt="Google Pay" title="Google Pay" />
+                    <img className={classes.footer_payment_system} src="./files/footer_icons/apple_pay.svg" alt="Apple Pay" title="Apple Pay" />
                 </div>
 
             </footer>

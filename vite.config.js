@@ -5,6 +5,7 @@ import path from 'path';
 
 export default defineConfig({
   plugins: [react()],
+  base: '/project_online_shop/',
   server: {
     host: '0.0.0.0',
     https: {
