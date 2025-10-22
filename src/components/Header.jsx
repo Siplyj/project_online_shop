@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { selectFavoriteCount } from '../store/favoritesSlice';
+import { selectFavoriteCount } from 'store/favoritesSlice';
 
-import useAuth from '../hooks/useAuth';
+import useAuth from 'hooks/useAuth';
 import classes from './Header.module.css';
 
 const Header = ({ onLoginClick }) => {

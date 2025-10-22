@@ -4,6 +4,18 @@ import fs from 'fs';
 import path from 'path';
 
 export default defineConfig({
+  resolve: {
+    alias: {
+      config: path.resolve(__dirname, './config.js'),
+      assets: path.resolve(__dirname, './src/assets'),
+      components: path.resolve(__dirname, './src/components'),
+      files: path.resolve(__dirname, './src/files'),
+      hooks: path.resolve(__dirname, './src/hooks'),
+      pages: path.resolve(__dirname, './src/pages'),
+      store: path.resolve(__dirname, './src/store'),
+      utils: path.resolve(__dirname, './src/utils'),
+    },
+  },
   plugins: [react()],
   base: '/project_online_shop/',
   server: {

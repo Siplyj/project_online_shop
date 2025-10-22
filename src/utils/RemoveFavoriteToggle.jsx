@@ -1,5 +1,5 @@
-import { BACKEND_URL } from '../../config';
-import { removeFavorite } from '../store/favoritesSlice';
+import { BACKEND_URL } from 'config';
+import { removeFavorite } from 'store/favoritesSlice';
 
 export async function removeFavoriteItem({ dispatch, userId, product, size }) {
   const productKey = `${product.id}_${size}`;

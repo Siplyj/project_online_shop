@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { removeAllItems } from '../store/cartSlice';
+import { removeAllItems } from 'store/cartSlice';
 
 function SuccessPage() {
   const dispatch = useDispatch();

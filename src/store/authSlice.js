@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { setFavorites } from './favoritesSlice';
+import { setFavorites } from 'store/favoritesSlice';
 
 const initialState = {
   isLoggedIn: false,

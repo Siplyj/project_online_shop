@@ -1,9 +1,9 @@
 import { useState, useEffect, useMemo } from 'react';
 import { Outlet } from 'react-router-dom';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
-import AmplifyForm from '../components/AmplifyForm';
-import useAuth from '../hooks/useAuth';
+import Header from 'components/Header';
+import Footer from 'components/Footer';
+import AmplifyForm from 'components/AmplifyForm';
+import useAuth from 'hooks/useAuth';
 
 const RootLayout = () => {
   const [showAuthModal, setShowAuthModal] = useState(false);

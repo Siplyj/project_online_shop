@@ -3,9 +3,9 @@ import { useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
 
 import classes from './CartPage.module.css';
-import CartPageStep1 from '../components/CartPageStep1';
-import CartPageStep2 from '../components/CartPageStep2';
-import CheckoutButton from '../components/CheckoutButton';
+import CartPageStep1 from 'components/CartPageStep1';
+import CartPageStep2 from 'components/CartPageStep2';
+import CheckoutButton from 'components/CheckoutButton';
 
 function CartPage() {
   const items = useSelector((state) => state.cart.items);

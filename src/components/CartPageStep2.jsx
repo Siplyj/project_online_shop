@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import classes from '../pages/CartPage.module.css';
+import classes from 'pages/CartPage.module.css';
 
 function CartPageStep2({ formData, setFormData, setIsFormValid, wasSubmitted }) {
   const [errors, setErrors] = useState({});

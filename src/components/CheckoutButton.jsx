@@ -1,7 +1,7 @@
 import { useAuthenticator } from '@aws-amplify/ui-react';
 import { useState } from 'react';
-import classes from '../pages/CartPage.module.css';
-import { BACKEND_URL } from '../../config';
+import classes from 'pages/CartPage.module.css';
+import { BACKEND_URL } from 'config';
 
 function CheckoutButton({ cartItems, formData, disabled, setWasSubmitted, onLoginClick }) {
   const { user } = useAuthenticator((context) => [context.user]);

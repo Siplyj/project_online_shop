@@ -5,7 +5,7 @@ import App from './App.jsx';
 
 // Redux
 import { Provider } from 'react-redux';
-import store from './store/store';
+import store from 'store/store';
 
 // Stripe
 import { Elements } from '@stripe/react-stripe-js';

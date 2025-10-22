@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useState, useEffect, useRef } from 'react';
 import classes from './ProductsSlider.module.css';
-import { asset } from '../utils/assets';
+import { asset } from 'utils/assets';
 
 const ProductsSlider = ({title, description, gender}) => {
   const [products, setProducts] = useState([]);

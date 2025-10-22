@@ -2,8 +2,8 @@ import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 
-import classes from '../pages/CartPage.module.css';
-import { asset } from '../utils/assets';
+import classes from 'pages/CartPage.module.css';
+import { asset } from 'utils/assets';
 import {
   removeItem,
   removeAllItems,

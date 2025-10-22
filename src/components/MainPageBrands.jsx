@@ -1,10 +1,12 @@
 import classes from './MainPageBrands.module.css';
 
 const MainPageBrands = () => {
-  const brand_logos = import.meta.glob('/src/files/brands_logo/*.{jpg,jpeg,png,webp}', { eager: true });
-  const brandImagesArray = Object.values(brand_logos).map((img) => img.default);
+  const brandImagesArray = [];
 
-  // Дублируем логотипы для плавной бесконечной прокрутки
+  for (let i = 1; i < 9; i++) {
+    brandImagesArray.push(`./files/mainpage/brands_logo/brand-logo-0${i}.png`);
+  }
+
   const doubleImages = [...brandImagesArray, ...brandImagesArray];
 
   return (

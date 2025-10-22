@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { useAuthenticator } from '@aws-amplify/ui-react';
-import { logoutAction, setLoginStatus, setUser, setUserId } from '../store/authSlice';
-import { clearFavorites } from '../store/favoritesSlice';
+import { logoutAction, setLoginStatus, setUser, setUserId } from 'store/authSlice';
+import { clearFavorites } from 'store/favoritesSlice';
 
 const useAuth = () => {
   const dispatch = useDispatch();

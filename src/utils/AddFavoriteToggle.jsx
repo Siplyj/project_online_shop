@@ -1,5 +1,5 @@
-import { BACKEND_URL } from '../../config';
-import { addFavorite } from '../store/favoritesSlice';
+import { BACKEND_URL } from 'config';
+import { addFavorite } from 'store/favoritesSlice';
 
 export async function addFavoriteItem({ dispatch, userId, product, selectedSize, category }) {
   const favoriteProduct = {

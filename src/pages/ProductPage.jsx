@@ -3,16 +3,16 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 
 import classes from './ProductPage.module.css';
-import { asset } from '../utils/assets';
-import { addItem, increaseQuantity, decreaseQuantity } from '../store/cartSlice';
-import { addFavorite, removeFavorite, setFavorites } from '../store/favoritesSlice';
-import ProductsSlider from '../components/ProductsSlider';
-import { removeFavoriteItem } from '../utils/RemoveFavoriteToggle';
-import { addFavoriteItem } from '../utils/AddFavoriteToggle';
+import { asset } from 'utils/assets';
+import { addItem, increaseQuantity, decreaseQuantity } from 'store/cartSlice';
+import { addFavorite, removeFavorite, setFavorites } from 'store/favoritesSlice';
+import ProductsSlider from 'components/ProductsSlider';
+import { removeFavoriteItem } from 'utils/RemoveFavoriteToggle';
+import { addFavoriteItem } from 'utils/AddFavoriteToggle';
 
 import { useAuthenticator } from '@aws-amplify/ui-react';
 
-import { BACKEND_URL } from '../../config';
+import { BACKEND_URL } from 'config';
 
 function ProductPage() {
   const { user } = useAuthenticator((context) => [context.user]);
@@ -173,7 +173,7 @@ function ProductPage() {
             </button>
 
             <img
-              src={`../files/catalog/${category}/${product.id.slice(-2)}_${product.url}/${imageNumber}.webp`}
+              src={`files/catalog/${category}/${product.id.slice(-2)}_${product.url}/${imageNumber}.webp`}
               alt={product.name}
               className={classes.product_big_image}
             />
@@ -197,7 +197,7 @@ function ProductPage() {
                   className={classes.product_small_image_wrapper}
                 >
                   <img
-                    src={`../files/catalog/${category}/${product.id.slice(-2)}_${product.url}/${imgNumber}.webp`}
+                    src={`files/catalog/${category}/${product.id.slice(-2)}_${product.url}/${imgNumber}.webp`}
                     alt={`${product.name} ${imgNumber}`}
                     className={`${classes.product_small_image} ${imgNumber === imageNumber ? classes.product_small_image_selected : ''}`}
                     onClick={() => setImageNumber(imgNumber)}

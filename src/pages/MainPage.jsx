@@ -1,9 +1,9 @@
 // import { Link } from 'react-router-dom';
 
-import MainPageCategories from '../components/MainPageCategories';
-import ProductsSlider from '../components/ProductsSlider';
-import MainPageBrands from '../components/MainPageBrands';
-import MainPageAddress from '../components/MainPageAddress';
+import MainPageCategories from 'components/MainPageCategories';
+import ProductsSlider from 'components/ProductsSlider';
+import MainPageBrands from 'components/MainPageBrands';
+import MainPageAddress from 'components/MainPageAddress';
 
 const MainPage = () => {
 
