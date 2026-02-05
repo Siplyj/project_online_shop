@@ -1,28 +1,35 @@
+import { useCallback } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, Navigate } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
 
-import classes from './FavoritesPage.module.css';
 import { asset } from 'utils/assets';
-import { removeFavorite } from 'store/favoritesSlice';
-import { addItem, increaseQuantity, decreaseQuantity } from 'store/cartSlice';
-import { removeFavoriteItem } from 'utils/RemoveFavoriteToggle';
+import { handleAddToCart, handleDecreaseQuantity, handleIncreaseQuantity } from 'utils/cart/CartActions';
+import { removeFavoriteItem } from 'utils/favorites/RemoveFavoriteToggle';
+import classes from './FavoritesPage.module.css';
 
 function FavoritesPage() {
   const dispatch = useDispatch();
-  const favoriteItems = useSelector((state) => state.favorites.items);
-  const cartItems = useSelector((state) => state.cart.items);
+  const favoriteItems = useSelector((state) => state.favorites.items || []);
+  const cartItems = useSelector((state) => state.cart.items || []);
   const userId = useSelector((state) => state.auth.userId);
+
+  const handleRemoveFavorite = useCallback(
+    (item) => removeFavoriteItem({ dispatch, userId, product: item, size: item.size }),
+    [dispatch, userId]
+  );
+
+  const handleAdd = useCallback((item) => handleAddToCart(dispatch, item), [dispatch]);
+  const handleIncrease = useCallback((item) => handleIncreaseQuantity(dispatch, item), [dispatch]);
+  const handleDecrease = useCallback((item) => handleDecreaseQuantity(dispatch, item), [dispatch]);
 
   if (!userId) {
     return <Navigate to="/" replace />;
   }
 
-  if (!favoriteItems || favoriteItems.length === 0) {
-    return <div className={classes.favorites_title}>You have no favorites yet.</div>;
-  }
-
-  return (
-    <div className={classes.favorites_wrapper}>
+  return favoriteItems.length === 0 ? (
+      <div className={classes.favorites_title}>You have no favorites yet.</div>
+    ) : (
+      <div className={classes.favorites_wrapper}>
       <h1 className={classes.favorites_title}>Your Favorites</h1>
       <div className={classes.favorites_grid}>
         {favoriteItems.map((item) => {
@@ -45,9 +52,7 @@ function FavoritesPage() {
                 </Link>
                 <button
                   className={classes.favorite_icon}
-                  onClick={() =>
-                    removeFavoriteItem({ dispatch, userId, product: item, size: item.size })
-                  }
+                  onClick={() => handleRemoveFavorite(item)}
                 >
                   <span
                     className="material-symbols-outlined"
@@ -72,19 +77,7 @@ function FavoritesPage() {
                 {!cartItem ? (
                   <button
                     className={classes.product_cart_button}
-                    onClick={() =>
-                      dispatch(
-                        addItem({
-                          id: item.id,
-                          gender: item.gender,
-                          url: item.url,
-                          name: item.name,
-                          price: item.price,
-                          image: item.image,
-                          size: item.size,
-                        })
-                      )
-                    }
+                    onClick={() => handleAdd(item)}
                   >
                     Add to cart
                   </button>
@@ -92,9 +85,7 @@ function FavoritesPage() {
                   <div className={classes.product_cart_controls}>
                     <button
                       className={classes.product_cart_control_button}
-                      onClick={() =>
-                        dispatch(decreaseQuantity({ id: item.id, size: item.size }))
-                      }
+                      onClick={() => handleDecrease(item)}
                     >
                       <span className="material-symbols-outlined">remove</span>
                     </button>
@@ -106,9 +97,7 @@ function FavoritesPage() {
 
                     <button
                       className={classes.product_cart_control_button}
-                      onClick={() =>
-                        dispatch(increaseQuantity({ id: item.id, size: item.size }))
-                      }
+                      onClick={() => handleIncrease(item)}
                     >
                       <span className="material-symbols-outlined">add</span>
                     </button>

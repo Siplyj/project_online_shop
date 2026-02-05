@@ -1,10 +1,10 @@
+import { useAuthenticator } from '@aws-amplify/ui-react';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { useAuthenticator } from '@aws-amplify/ui-react';
 
-import { setUser, setUserId, setLoginStatus } from 'store/authSlice';
+import { setLoginStatus, setUser, setUserId } from 'store/authSlice';
 import { setFavorites } from 'store/favoritesSlice';
-import { fetchFavorites } from 'utils/fetchFavorites';
+import { fetchFavorites } from 'utils/favorites/fetchFavorites';
 
 export function useAuthInit() {
   const dispatch = useDispatch();

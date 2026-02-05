@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { selectFavoriteCount } from 'store/favoritesSlice';
 
 import useAuth from 'hooks/useAuth';
@@ -61,15 +61,17 @@ const Header = ({ onLoginClick }) => {
               </Link>
             )}
 
-            <Link className={classes.header_icon_link} to="/favorite">
-              <span className={`${classes.header_icon_symbol} material-symbols-outlined`}>
-                favorite
-              </span>
+            {authStatus === 'authenticated' && (
+              <Link className={classes.header_icon_link} to="/favorite">
+                <span className={`${classes.header_icon_symbol} material-symbols-outlined`}>
+                  favorite
+                </span>
 
-              {totalFavoriteQuantity > 0 && (
-                <span className={classes.header_cart_badge}>{totalFavoriteQuantity}</span>
-              )}
-            </Link>
+                {totalFavoriteQuantity > 0 && (
+                  <span className={classes.header_cart_badge}>{totalFavoriteQuantity}</span>
+                )}
+              </Link>
+            )}
 
             <Link className={classes.header_icon_link} to="/cart">
               <span className={`${classes.header_icon_symbol} material-symbols-outlined`}>

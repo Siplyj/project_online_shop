@@ -1,11 +1,11 @@
-import { Link, useOutletContext } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { useState, useEffect } from 'react';
+import { useOutletContext } from 'react-router-dom';
 
+import CartPageStep1 from 'components/CartPage/CartPageStep1';
+import CartPageStep2 from 'components/CartPage/CartPageStep2';
+import CheckoutButton from 'components/CartPage/CheckoutButton';
 import classes from './CartPage.module.css';
-import CartPageStep1 from 'components/CartPageStep1';
-import CartPageStep2 from 'components/CartPageStep2';
-import CheckoutButton from 'components/CheckoutButton';
 
 function CartPage() {
   const items = useSelector((state) => state.cart.items);

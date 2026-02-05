@@ -1,9 +1,9 @@
-import { useEffect, useState } from 'react';
+import { BACKEND_URL } from 'config';
+import { useCallback, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import classes from './AccountOrders.module.css';
 import { asset } from 'utils/assets';
-import { BACKEND_URL } from 'config';
+import classes from './AccountOrders.module.css';
 
 const AccountOrders = () => {
   const [orders, setOrders] = useState([]);
@@ -76,6 +76,16 @@ const AccountOrders = () => {
     }
   };
 
+  const handleToggleOrder = useCallback(
+    (orderId) => () => toggleOrder(orderId),
+    [toggleOrder]
+  );
+
+  const handleCheckoutClick = useCallback(
+    (order) => () => handleCheckout(order),
+    []
+  );
+
   return (
     <div className={classes.orders_wrapper}>
       <h2 className={classes.orders_wrapper_title}>My Orders</h2>
@@ -91,10 +101,10 @@ const AccountOrders = () => {
           <div key={order.orderId} className={classes.order_card}>
             <div
               className={classes.order_header}
-              onClick={() => toggleOrder(order.orderId)}
+              onClick={handleToggleOrder(order.orderId)}
+              onKeyDown={(e) => e.key === 'Enter' && handleToggleOrder(order.orderId)()}
               role="button"
               tabIndex={0}
-              onKeyDown={(e) => e.key === 'Enter' && toggleOrder(order.orderId)}
             >
               <p>
                 <strong>Order №: </strong>{order.orderId}
@@ -160,7 +170,7 @@ const AccountOrders = () => {
                   <div className={classes.order_payment_wrapper}>
                     <button
                       className={classes.order_pay_button}
-                      onClick={() => {handleCheckout(order)}}
+                      onClick={handleCheckoutClick(order)}
                       >
                       Pay now
                     </button>

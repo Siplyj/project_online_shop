@@ -1,6 +1,6 @@
-import { Authenticator, TextField, PasswordField, ThemeProvider } from '@aws-amplify/ui-react';
-import { fetchUserAttributes } from 'aws-amplify/auth';
+import { Authenticator, PasswordField, TextField, ThemeProvider } from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css';
+import classes from './AmplifyForm.module.css';
 
 export const CustomTheme = {
   name: 'custom-theme',
@@ -46,9 +46,10 @@ export const CustomTheme = {
   },
 };
 
-const AmplifyForm = () => {
+const AmplifyForm = ({ onClose }) => {
   return (
     <ThemeProvider theme={CustomTheme}>
+      <button className={classes.modal_close_button} onClick={onClose}>×</button>
       <Authenticator
         variation="modal"
         components={{
@@ -67,6 +68,5 @@ const AmplifyForm = () => {
     </ThemeProvider>
   );
 };
-
 
 export default AmplifyForm;

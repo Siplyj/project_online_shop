@@ -1,9 +1,9 @@
-import { useState, useEffect, useMemo } from 'react';
-import { Outlet } from 'react-router-dom';
-import Header from 'components/Header';
-import Footer from 'components/Footer';
 import AmplifyForm from 'components/AmplifyForm';
+import Footer from 'components/layout/Footer';
+import Header from 'components/layout/Header';
 import useAuth from 'hooks/useAuth';
+import { useEffect, useMemo, useState } from 'react';
+import { Outlet } from 'react-router-dom';
 
 const RootLayout = () => {
   const [showAuthModal, setShowAuthModal] = useState(false);
@@ -34,7 +34,10 @@ const RootLayout = () => {
     };
   }, [showAuthModal]);
 
-  const amplifyFormMemo = useMemo(() => <AmplifyForm />, []);
+  const amplifyFormMemo = useMemo(
+    () => <AmplifyForm onClose={() => setShowAuthModal(false)} />,
+    []
+  );
 
   return (
     <>

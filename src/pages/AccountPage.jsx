@@ -1,13 +1,11 @@
-import { useAuthenticator } from '@aws-amplify/ui-react';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { AccountSettings, useAuthenticator } from '@aws-amplify/ui-react';
+import { fetchAuthSession } from 'aws-amplify/auth';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setUser, setUserId, logoutAction } from 'store/authSlice';
-import { fetchAuthSession } from 'aws-amplify/auth';
-import { AccountSettings } from '@aws-amplify/ui-react';
+import { Navigate, useNavigate } from 'react-router-dom';
+import { logoutAction, setUserId } from 'store/authSlice';
 
-import AccountOrders from 'components/AccountOrders';
-
+import AccountOrders from 'components/Account/AccountOrders';
 
 const AccountPage = () => {
   const dispatch = useDispatch();
