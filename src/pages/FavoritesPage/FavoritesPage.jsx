@@ -27,7 +27,9 @@ function FavoritesPage() {
   }
 
   return favoriteItems.length === 0 ? (
-      <div className={classes.favorites_title}>You have no favorites yet.</div>
+      <div className={classes.favorites_wrapper}>
+        <div className={classes.favorites_title}>You have no favorites yet</div>
+      </div>
     ) : (
       <div className={classes.favorites_wrapper}>
       <h1 className={classes.favorites_title}>Your Favorites</h1>

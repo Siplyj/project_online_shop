@@ -1,4 +1,5 @@
-import { createBrowserRouter } from 'react-router-dom';
+// import { createBrowserRouter } from 'react-router-dom';
+import { createHashRouter } from 'react-router-dom';
 
 import AccountPage from 'pages/AccountPage';
 import CancelPage from 'pages/CancelPage';
@@ -10,7 +11,8 @@ import ProductPage from 'pages/ProductPage';
 import RootLayout from 'pages/RootLayout';
 import SuccessPage from 'pages/SuccessPage';
 
-export const router = createBrowserRouter(
+// export const router = createBrowserRouter(
+export const router = createHashRouter(
   [
     {
       path: '/',
@@ -32,5 +34,5 @@ export const router = createBrowserRouter(
       ],
     },
   ],
-  { basename: import.meta.env.BASE_URL }
+  // { basename: import.meta.env.BASE_URL }
 );

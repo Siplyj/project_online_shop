@@ -9,7 +9,9 @@ dotenv.config();
 const app = express();
 const dynamo = new AWS.DynamoDB.DocumentClient();
 
-app.use(cors({ origin: 'https://localhost:5173/' }));
+app.use(cors({ origin: 'https://siplyj.github.io' }));
+// app.use(cors({ origin: 'https://localhost:5173' }));
+
 app.use(express.json());
 
 app.post('/generate-order-id', async (req, res) => {
@@ -50,8 +52,10 @@ app.post('/create-checkout-session', async (req, res) => {
         },
         quantity: item.quantity,
       })),
-      success_url: 'https://localhost:5173/project_online_shop/uccess',
-      cancel_url: 'https://localhost:5173/project_online_shop/cancel',
+      success_url: 'https://siplyj.github.io/project_online_shop/#/success',
+      cancel_url: 'https://siplyj.github.io/project_online_shop/#/cancel',
+      // success_url: 'https://localhost:5173/project_online_shop/success',
+      // cancel_url: 'https://localhost:5173/project_online_shop/cancel',
       metadata: { userId, orderId },
     });
 
