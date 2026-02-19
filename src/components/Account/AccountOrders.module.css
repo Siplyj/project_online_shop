@@ -25,42 +25,36 @@
 }
 
 .order_header {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
   gap: 10px 20px;
-  cursor: pointer;
-  padding: 10px;
+  padding: 16px;
   border-bottom: 1px solid #ccc;
-}
-
-.order_header {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 10px;
-}
-
-.order_header > :nth-child(-n+3) {
-  flex: 1 1 0;
-  min-width: 0;
+  cursor: pointer;
 }
 
 .order_header > :nth-child(1) {
   text-align: left;
+  grid-column: 1;
+  grid-row: 1;
 }
 
 .order_header > :nth-child(2) {
   text-align: center;
+  grid-column: 2;
+  grid-row: 1;
 }
 
 .order_header > :nth-child(3) {
   text-align: right;
+  grid-column: 3;
+  grid-row: 1;
 }
 
 .order_header > :nth-child(4) {
-  flex-basis: 100%;
   text-align: left;
+  grid-column: 1 / 4;
+  grid-row: 2;
 }
 
 .order_header:hover {
@@ -160,4 +154,34 @@
 
 .order_pay_button:hover {
   background-color: var(--color-hover-dark-gray);
+}
+
+@media (max-width: 750px) {
+  .order_header {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .order_header > :nth-child(1) {
+  text-align: left;
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.order_header > :nth-child(2) {
+  text-align: left;
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.order_header > :nth-child(3) {
+  text-align: right;
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.order_header > :nth-child(4) {
+  text-align: right;
+  grid-column: 2;
+  grid-row: 2;
+}
 }

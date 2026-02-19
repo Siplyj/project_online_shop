@@ -18,8 +18,9 @@
   left: 50%;
   transform: translate(-50%, -50%);
   color: white;
-  font-size: 4rem;
+  font-size: 4vw;
   text-shadow: 0 0 10px rgba(0,0,0,0.5);
+  text-align: center;
 }
 
 .mainpage_categories_big_image,

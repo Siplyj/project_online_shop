@@ -12,7 +12,7 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  gap: 100px;
+  gap: 50px;
   margin: 0px auto 30px;
   align-items: flex-start;
 }
@@ -288,4 +288,15 @@
   accent-color: var(--color-dark-gray);
   width: 18px;
   height: 18px;
+}
+
+@media (max-width: 700px) {
+  .cart_list_wrapper {
+    flex-direction: column;
+    align-items: normal;
+  }
+
+  .cart_prev_step_wrapper {
+    justify-content: flex-start;
+  }
 }
