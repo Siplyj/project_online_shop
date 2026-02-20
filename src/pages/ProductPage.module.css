@@ -241,6 +241,11 @@
         padding-left: 0px;
     }
 
+    .product_slider_next_slide,
+    .product_slider_prev_slide {
+        display: block;
+    }
+
     .product_slider_next_slide span,
     .product_slider_prev_slide span {
         font-size: 5vw;

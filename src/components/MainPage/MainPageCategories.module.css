@@ -1,6 +1,6 @@
 .mainpage_categories_wrapper {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 4 равные колонки */
+  grid-template-columns: repeat(4, 1fr);
   gap: 20px;
   max-width: var(--max-wrapper-width);
   margin: 0 auto 2.5%;

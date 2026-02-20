@@ -167,7 +167,6 @@
     .header_logo {
         grid-column: 1;
         grid-row: 1;
-        /* max-width: 300px; */
     }
 
     .header_icons {
